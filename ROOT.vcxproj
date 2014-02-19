@@ -95,6 +95,7 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="binOptimize.cpp" />
     <ClCompile Include="DataLoader.cpp" />
     <ClCompile Include="h7.cpp" />
     <ClCompile Include="is507.cpp" />

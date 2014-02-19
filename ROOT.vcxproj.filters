@@ -59,5 +59,8 @@
     <ClCompile Include="h7.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="binOptimize.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
