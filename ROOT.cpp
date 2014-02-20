@@ -15,14 +15,13 @@ using namespace std;
 
 void is507();
 void timeHistograms();
-TH1F* binOptimize(TH1F* histo);
 
 int _tmain(int argc, _TCHAR* argv[])
 {
 	TApplication *theApp = new TApplication("ROOT example", &argc, (char**)argv);
 	//DataLoader* l = new DataLoader();
 	//TChain* chain = l->loadData("FileName1.dat", "h7");
-	//chain->Process(new Selector(new TimeAnalyzer("Erik")));
+	//chain->Process(new Selector(new TimeAnalyzer("erik")));
 	timeHistograms();
 	theApp->Run();
 	return 0;

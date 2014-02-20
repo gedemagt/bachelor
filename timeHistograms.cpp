@@ -18,12 +18,6 @@
 
 using namespace std;
 
-vector<TCutG> cuts;
-void loadCuts() {
-	DataLoader* l = new DataLoader();
-
-}
-
 void timeHistograms() {
 	// Load data
 	DataLoader* l = new DataLoader();
@@ -136,10 +130,6 @@ void timeHistograms() {
 		else if (topRightCut->IsInside(E1, Egas)){
 			topRightBanan->Fill(E1, Egas);
 		}
-		//else {
-		//	theRestClock->Fill(Clockl);
-		//	theRestBanan->Fill(E1, Egas);
-		//}
 
 
 		if (ii % 10000 == 0){ cout << "\rProgress: " << ((double)ii) / ((double)nentries) * 100 << "%    " << flush; }

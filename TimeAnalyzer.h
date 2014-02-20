@@ -13,13 +13,13 @@ public:
 	void terminate();
 
 private:
-	void fillHistograms(Short_t Egas, Short_t E1);
+	void fillHistograms(Short_t Egas, Short_t E1, Int_t Clockl);
 
 	Int_t clockllast = 0, Nt1last = 0, clocks, clockl;
 	Short_t egas;
 	Short_t e1;
 
-	TFile *file;
+	//TFile *file;
 
 	TCutG* midCut;
 	TCutG* leftCut;

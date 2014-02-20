@@ -29,15 +29,15 @@
 #include <iostream>
 
 using namespace std;
-
+TString file;
 void Selector::Begin(TTree * /*tree*/)
 {
    // The Begin() function is called at the start of the query.
    // When running with PROOF Begin() is only called on the client.
    // The tree argument is deprecated (on PROOF 0 is passed).
 	//nentries = fChain->GetEntries();
-	
-   TString option = GetOption();
+   file = GetOption();
+   fOutput->AddAll(gDirectory->GetList());
    cout << "Started" << endl;
 
 }
@@ -96,8 +96,11 @@ void Selector::SlaveTerminate()
 
 void Selector::Terminate()
 {
+	TString rootFile = "john";
+	rootFile += ".root";
+	TFile f(rootFile, "recreate");
 	fOutput->Write();
-	a->terminate();
+	cout << endl;
 	cout << "Terminated" << endl;
    // The Terminate() function is the last function to be called during
    // a query. It always runs on the client, it can be used to present

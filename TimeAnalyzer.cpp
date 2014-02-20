@@ -6,7 +6,6 @@
 using namespace std;
 
 TimeAnalyzer::TimeAnalyzer(char* filename) {
-	file = new TFile("Histogrammer/histograms.root", "RECREATE");
 	
 	// Load cuts
 	DataLoader* l = new DataLoader();
@@ -48,17 +47,32 @@ void TimeAnalyzer::analyze(Selector* s) {
 			clockllast = s->Clockl;
 			Nt1last = s->Nt1;
 		}
-		fillHistograms(egas, e1);
+		fillHistograms(egas, e1, clockl);
 	}
 }
 
-void TimeAnalyzer::fillHistograms(Short_t Egas, Short_t E1) {
+void TimeAnalyzer::fillHistograms(Short_t Egas, Short_t E1, Int_t Clockl) {
 	allClockl->Fill(clockl);
 	allClocks->Fill(clocks);
+	if (midCut->IsInside(E1, Egas)){
+		midClockl->Fill(Clockl);
+		midClocks->Fill(clocks);
+	}
+	else if (bottomCut->IsInside(E1, Egas)){
+		bottomClockl->Fill(Clockl);
+		bottomClocks->Fill(clocks);
+	}
+	else if (leftCut->IsInside(E1, Egas)){
+		leftClockl->Fill(Clockl);
+		leftClocks->Fill(clocks);
+	}
+	else if (topRightCut->IsInside(E1, Egas)){
+		topRightClockl->Fill(Clockl);
+		topRightClocks->Fill(clocks);
+	}
 
 }
 
 void TimeAnalyzer::terminate() {
-	file->Write();
-	file->Close();
 }
+
