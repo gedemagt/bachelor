@@ -4,20 +4,26 @@
 // from TChain h7/
 //////////////////////////////////////////////////////////
 
-#define Selector_h
+//#ifndef Selector_h
+//#define Selector_h
 
 #include <TROOT.h>
 #include <TChain.h>
 #include <TFile.h>
 #include <TSelector.h>
+#include "Analyzer.h"
 
 // Header file for the classes stored in the TTree if any.
 
 // Fixed size dimensions of array or collections stored in the TTree if any.
-
+class Analyzer;
 class Selector : public TSelector {
+private :
+	Analyzer* a;
+	
 public :
-   TTree          *fChain;   //!pointer to the analyzed TTree or TChain
+	UInt_t nEvents;
+	TTree          *fChain;   //!pointer to the analyzed TTree or TChain
 
    // Declaration of leaf types
    Int_t           Clockl;
@@ -85,7 +91,8 @@ public :
    TBranch        *b_Tf;   //!
    TBranch        *b_Tb;   //!
 
-   Selector(TTree * /*tree*/ =0) : fChain(0) { }
+   Selector(TTree * /*tree*/ =0) : fChain(0) , nEvents(0) { }
+   Selector(Analyzer* a);
    virtual ~Selector() { }
    virtual Int_t   Version() const { return 2; }
    virtual void    Begin(TTree *tree);
@@ -151,7 +158,6 @@ inline void Selector::Init(TTree *tree)
    fChain->SetBranchAddress("Tf", Tf, &b_Tf);
    fChain->SetBranchAddress("Tb", Tb, &b_Tb);
 }
-
 inline Bool_t Selector::Notify()
 {
    // The Notify() function is called when a new file is opened. This

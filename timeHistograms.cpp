@@ -14,9 +14,15 @@
 #include "TRoot.h"
 #include "TCutG.h"
 #include "DataLoader.h"
+#include <vector>
 
 using namespace std;
 
+vector<TCutG> cuts;
+void loadCuts() {
+	DataLoader* l = new DataLoader();
+
+}
 
 void timeHistograms() {
 	// Load data
@@ -30,7 +36,7 @@ void timeHistograms() {
 	
 	// Load the chain add
 	TChain* chain = l->loadData("FileName1.dat", "h7");
-	chain->MakeSelector();
+	//chain->MakeSelector();
 	// Load the output file
 	TFile file("Histogrammer/histograms.root", "RECREATE");
 	

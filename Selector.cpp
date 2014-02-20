@@ -1,4 +1,4 @@
-#define h7_cxx
+
 // The class definition in h7.h has been generated automatically
 // by the ROOT utility TTree::MakeSelector(). This class is derived
 // from the ROOT class TSelector. For more information on the TSelector
@@ -26,15 +26,19 @@
 #include "Selector.h"
 #include <TH2.h>
 #include <TStyle.h>
+#include <iostream>
 
+using namespace std;
 
 void Selector::Begin(TTree * /*tree*/)
 {
    // The Begin() function is called at the start of the query.
    // When running with PROOF Begin() is only called on the client.
    // The tree argument is deprecated (on PROOF 0 is passed).
-
+	//nentries = fChain->GetEntries();
+	
    TString option = GetOption();
+   cout << "Started" << endl;
 
 }
 
@@ -50,6 +54,7 @@ void Selector::SlaveBegin(TTree * /*tree*/)
 
 Bool_t Selector::Process(Long64_t entry)
 {
+	
    // The Process() function is called for each entry in the tree (or possibly
    // keyed object in the case of PROOF) to be processed. The entry argument
    // specifies which entry in the currently loaded tree is to be processed.
@@ -68,7 +73,16 @@ Bool_t Selector::Process(Long64_t entry)
    //
    // The return value is currently not used.
 
+	GetEntry(entry);
 
+	a->analyze(this);
+
+	//cout.precision(3);
+	nEvents++;
+	if (entry % 10000 == 0){ 
+		cout << "\rProgress: " << ((double)nEvents) / ((double)fChain->GetEntries()) * 100 << "%    " << flush; 
+	}
+	
    return kTRUE;
 }
 
@@ -82,8 +96,16 @@ void Selector::SlaveTerminate()
 
 void Selector::Terminate()
 {
+	fOutput->Write();
+	a->terminate();
+	cout << "Terminated" << endl;
    // The Terminate() function is the last function to be called during
    // a query. It always runs on the client, it can be used to present
    // the results graphically or save the results to file.
 
+}
+
+Selector::Selector(Analyzer* ana)
+{
+	a = ana;
 }

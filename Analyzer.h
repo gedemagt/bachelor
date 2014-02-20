@@ -1,6 +1,6 @@
 
 #pragma once
-#include "Selector.h"
+class Selector;
 
 class Analyzer {
 public:

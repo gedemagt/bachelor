@@ -1,6 +1,8 @@
 
 #include "TimeAnalyzer.h"
 #include "DataLoader.h"
+#include "Selector.h"
+#include <iostream>
 using namespace std;
 
 TimeAnalyzer::TimeAnalyzer(char* filename) {
@@ -51,7 +53,6 @@ void TimeAnalyzer::analyze(Selector* s) {
 }
 
 void TimeAnalyzer::fillHistograms(Short_t Egas, Short_t E1) {
-
 	allClockl->Fill(clockl);
 	allClocks->Fill(clocks);
 
