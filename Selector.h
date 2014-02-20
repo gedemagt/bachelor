@@ -4,8 +4,7 @@
 // from TChain h7/
 //////////////////////////////////////////////////////////
 
-#ifndef h7_h
-#define h7_h
+#define Selector_h
 
 #include <TROOT.h>
 #include <TChain.h>
@@ -16,7 +15,7 @@
 
 // Fixed size dimensions of array or collections stored in the TTree if any.
 
-class h7 : public TSelector {
+class Selector : public TSelector {
 public :
    TTree          *fChain;   //!pointer to the analyzed TTree or TChain
 
@@ -86,8 +85,8 @@ public :
    TBranch        *b_Tf;   //!
    TBranch        *b_Tb;   //!
 
-   h7(TTree * /*tree*/ =0) : fChain(0) { }
-   virtual ~h7() { }
+   Selector(TTree * /*tree*/ =0) : fChain(0) { }
+   virtual ~Selector() { }
    virtual Int_t   Version() const { return 2; }
    virtual void    Begin(TTree *tree);
    virtual void    SlaveBegin(TTree *tree);
@@ -105,10 +104,7 @@ public :
    //ClassDef(h7,0);
 };
 
-#endif
-
-#ifdef h7_cxx
-void h7::Init(TTree *tree)
+void Selector::Init(TTree *tree)
 {
    // The Init() function is called when the selector needs to initialize
    // a new tree or chain. Typically here the branch addresses and branch
@@ -156,7 +152,7 @@ void h7::Init(TTree *tree)
    fChain->SetBranchAddress("Tb", Tb, &b_Tb);
 }
 
-Bool_t h7::Notify()
+Bool_t Selector::Notify()
 {
    // The Notify() function is called when a new file is opened. This
    // can be either for a new TTree in a TChain or when when a new TTree
@@ -166,5 +162,3 @@ Bool_t h7::Notify()
 
    return kTRUE;
 }
-
-#endif // #ifdef h7_cxx

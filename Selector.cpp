@@ -23,12 +23,12 @@
 // Root > T->Process("h7.C+")
 //
 
-#include "h7.h"
+#include "Selector.h"
 #include <TH2.h>
 #include <TStyle.h>
 
 
-void h7::Begin(TTree * /*tree*/)
+void Selector::Begin(TTree * /*tree*/)
 {
    // The Begin() function is called at the start of the query.
    // When running with PROOF Begin() is only called on the client.
@@ -38,7 +38,7 @@ void h7::Begin(TTree * /*tree*/)
 
 }
 
-void h7::SlaveBegin(TTree * /*tree*/)
+void Selector::SlaveBegin(TTree * /*tree*/)
 {
    // The SlaveBegin() function is called after the Begin() function.
    // When running with PROOF SlaveBegin() is called on each slave server.
@@ -48,7 +48,7 @@ void h7::SlaveBegin(TTree * /*tree*/)
 
 }
 
-Bool_t h7::Process(Long64_t entry)
+Bool_t Selector::Process(Long64_t entry)
 {
    // The Process() function is called for each entry in the tree (or possibly
    // keyed object in the case of PROOF) to be processed. The entry argument
@@ -72,7 +72,7 @@ Bool_t h7::Process(Long64_t entry)
    return kTRUE;
 }
 
-void h7::SlaveTerminate()
+void Selector::SlaveTerminate()
 {
    // The SlaveTerminate() function is called after all entries or objects
    // have been processed. When running with PROOF SlaveTerminate() is called
@@ -80,7 +80,7 @@ void h7::SlaveTerminate()
 
 }
 
-void h7::Terminate()
+void Selector::Terminate()
 {
    // The Terminate() function is the last function to be called during
    // a query. It always runs on the client, it can be used to present

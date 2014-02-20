@@ -89,7 +89,7 @@
     <ClInclude Include="AnalysisClass.h" />
     <ClInclude Include="CalibrationClass.h" />
     <ClInclude Include="DataLoader.h" />
-    <ClInclude Include="h7.h" />
+    <ClInclude Include="Selector.h" />
     <ClInclude Include="SRIMclass.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
@@ -97,7 +97,7 @@
   <ItemGroup>
     <ClCompile Include="binOptimize.cpp" />
     <ClCompile Include="DataLoader.cpp" />
-    <ClCompile Include="h7.cpp" />
+    <ClCompile Include="Selector.cpp" />
     <ClCompile Include="is507.cpp" />
     <ClCompile Include="ROOT.cpp" />
     <ClCompile Include="timeHistograms.cpp" />

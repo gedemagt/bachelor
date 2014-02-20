@@ -36,7 +36,7 @@
     <ClInclude Include="DataLoader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="h7.h">
+    <ClInclude Include="Selector.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -56,10 +56,10 @@
     <ClCompile Include="DataLoader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="h7.cpp">
+    <ClCompile Include="binOptimize.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="binOptimize.cpp">
+    <ClCompile Include="Selector.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
