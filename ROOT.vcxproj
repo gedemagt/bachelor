@@ -87,12 +87,14 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AnalysisClass.h" />
+    <ClInclude Include="Analyzer.h" />
     <ClInclude Include="CalibrationClass.h" />
     <ClInclude Include="DataLoader.h" />
     <ClInclude Include="Selector.h" />
     <ClInclude Include="SRIMclass.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="TimeAnalyzer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="binOptimize.cpp" />
@@ -100,6 +102,7 @@
     <ClCompile Include="Selector.cpp" />
     <ClCompile Include="is507.cpp" />
     <ClCompile Include="ROOT.cpp" />
+    <ClCompile Include="TimeAnalyzer.cpp" />
     <ClCompile Include="timeHistograms.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

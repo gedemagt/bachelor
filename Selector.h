@@ -104,7 +104,7 @@ public :
    //ClassDef(h7,0);
 };
 
-void Selector::Init(TTree *tree)
+inline void Selector::Init(TTree *tree)
 {
    // The Init() function is called when the selector needs to initialize
    // a new tree or chain. Typically here the branch addresses and branch
@@ -152,7 +152,7 @@ void Selector::Init(TTree *tree)
    fChain->SetBranchAddress("Tb", Tb, &b_Tb);
 }
 
-Bool_t Selector::Notify()
+inline Bool_t Selector::Notify()
 {
    // The Notify() function is called when a new file is opened. This
    // can be either for a new TTree in a TChain or when when a new TTree
