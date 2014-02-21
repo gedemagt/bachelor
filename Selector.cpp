@@ -96,8 +96,8 @@ void Selector::SlaveTerminate()
 
 void Selector::Terminate()
 {
-	TString rootFile = "john";
-	rootFile += ".root";
+	TString rootFile = "Histogrammer/" +TString(a->getDestination()) + ".root";
+	//rootFile += ;
 	TFile f(rootFile, "recreate");
 	fOutput->Write();
 	cout << endl;

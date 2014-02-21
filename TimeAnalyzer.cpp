@@ -2,17 +2,18 @@
 #include "TimeAnalyzer.h"
 #include "DataLoader.h"
 #include "Selector.h"
+#include "TString.h"
 #include <iostream>
 using namespace std;
 
-TimeAnalyzer::TimeAnalyzer(char* filename) {
+TimeAnalyzer::TimeAnalyzer() {
 	
 	// Load cuts
 	DataLoader* l = new DataLoader();
-	midCut = l->loadCut("Histogrammer/midCut.root", "CUTG");
-	bottomCut = l->loadCut("Histogrammer/bottomCut.root", "CUTG");
-	leftCut = l->loadCut("Histogrammer/leftCut.root", "CUTG");
-	topRightCut = l->loadCut("Histogrammer/topRightCut.root", "CUTG");
+	midCut = l->loadCut("Histogrammer/cuts/midCut.root", "CUTG");
+	bottomCut = l->loadCut("Histogrammer/cuts/bottomCut.root", "CUTG");
+	leftCut = l->loadCut("Histogrammer/cuts/leftCut.root", "CUTG");
+	topRightCut = l->loadCut("Histogrammer/cuts/topRightCut.root", "CUTG");
 
 	// AL tids information
 	allClockl = new TH1F("allClockl", "Al data: Clockl i sek.", 5000, 0, 3200000);
@@ -71,6 +72,10 @@ void TimeAnalyzer::fillHistograms(Short_t Egas, Short_t E1, Int_t Clockl) {
 		topRightClocks->Fill(clocks);
 	}
 
+}
+
+char* TimeAnalyzer::getDestination() {
+	return "time";
 }
 
 void TimeAnalyzer::terminate() {

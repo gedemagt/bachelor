@@ -23,10 +23,10 @@ void timeHistograms() {
 	DataLoader* l = new DataLoader();
 	
 	// Load the cuts
-	TCutG* midCut = l->loadCut("Histogrammer/midCut.root", "CUTG");
-	TCutG* bottomCut = l->loadCut("Histogrammer/bottomCut.root", "CUTG");
-	TCutG* leftCut = l->loadCut("Histogrammer/leftCut.root", "CUTG");
-	TCutG* topRightCut = l->loadCut("Histogrammer/topRightCut.root", "CUTG");
+	TCutG* midCut = l->loadCut("Histogrammer/cuts/midCut.root", "CUTG");
+	TCutG* bottomCut = l->loadCut("Histogrammer/cuts/bottomCut.root", "CUTG");
+	TCutG* leftCut = l->loadCut("Histogrammer/cuts/leftCut.root", "CUTG");
+	TCutG* topRightCut = l->loadCut("Histogrammer/cuts/topRightCut.root", "CUTG");
 	
 	// Load the chain add
 	TChain* chain = l->loadData("FileName1.dat", "h7");

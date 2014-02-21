@@ -88,6 +88,7 @@
   <ItemGroup>
     <ClInclude Include="AnalysisClass.h" />
     <ClInclude Include="Analyzer.h" />
+    <ClInclude Include="BananaAnalyzer.h" />
     <ClInclude Include="CalibrationClass.h" />
     <ClInclude Include="DataLoader.h" />
     <ClInclude Include="Selector.h" />
@@ -97,6 +98,7 @@
     <ClInclude Include="TimeAnalyzer.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="BananaAnalyzer.cpp" />
     <ClCompile Include="binOptimize.cpp" />
     <ClCompile Include="DataLoader.cpp" />
     <ClCompile Include="Selector.cpp" />

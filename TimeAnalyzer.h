@@ -7,10 +7,11 @@
 class TimeAnalyzer : public Analyzer {
 
 public:
-	TimeAnalyzer(char* filename);
+	TimeAnalyzer();
 	virtual ~TimeAnalyzer() {};
 	void analyze(Selector* s);
 	void terminate();
+	char* getDestination();
 
 private:
 	void fillHistograms(Short_t Egas, Short_t E1, Int_t Clockl);
