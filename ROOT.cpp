@@ -10,6 +10,7 @@
 #include "DataLoader.h"
 #include "Selector.h"
 #include "TimeAnalyzer.h"
+#include "SiliciumAnalyzer.h"
 #include "BananaAnalyzer.h"
 #include "TRint.h"
 
@@ -23,7 +24,7 @@ int _tmain(int argc, _TCHAR* argv[])
 	TRint *theApp = new TRint("ROOT example", &argc, (char**)argv);
 	DataLoader* l = new DataLoader();
 	TChain* chain = l->loadData("FileName1.dat", "h7");
-	chain->Process(new Selector(new TimeAnalyzer()));
+	chain->Process(new Selector(new SiliciumAnalyzer()));
 	//timeHistograms();
 	theApp->Run();
 	return 0;

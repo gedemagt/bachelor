@@ -38,7 +38,6 @@ void Selector::Begin(TTree * /*tree*/)
 	//nentries = fChain->GetEntries();
    file = GetOption();
    fOutput->AddAll(gDirectory->GetList());
-   cout << "Started" << endl;
 
 }
 
@@ -96,6 +95,7 @@ void Selector::SlaveTerminate()
 
 void Selector::Terminate()
 {
+	a->terminate();
 	TString rootFile = "Histogrammer/" +TString(a->getDestination()) + ".root";
 	//rootFile += ;
 	TFile f(rootFile, "recreate");

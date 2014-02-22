@@ -12,6 +12,7 @@
 #include <TFile.h>
 #include <TSelector.h>
 #include "Analyzer.h"
+#include <iostream>
 
 // Header file for the classes stored in the TTree if any.
 
@@ -127,36 +128,37 @@ inline void Selector::Init(TTree *tree)
    fChain->SetMakeClass(1);
 
    fChain->SetBranchAddress("Clockl", &Clockl, &b_Clockl);
-   fChain->SetBranchAddress("Ievent", &Ievent, &b_Ievent);
-   fChain->SetBranchAddress("Ntrig", &Ntrig, &b_Ntrig);
-   fChain->SetBranchAddress("Nacc", &Nacc, &b_Nacc);
-   fChain->SetBranchAddress("Np", &Np, &b_Np);
-   fChain->SetBranchAddress("Nn", &Nn, &b_Nn);
+   //fChain->SetBranchAddress("Ievent", &Ievent, &b_Ievent);
+   //fChain->SetBranchAddress("Ntrig", &Ntrig, &b_Ntrig);
+   //fChain->SetBranchAddress("Nacc", &Nacc, &b_Nacc);
+   //fChain->SetBranchAddress("Np", &Np, &b_Np);
+   //fChain->SetBranchAddress("Nn", &Nn, &b_Nn);
    fChain->SetBranchAddress("Ngas", &Ngas, &b_Ngas);
-   fChain->SetBranchAddress("Ne1", &Ne1, &b_Ne1);
-   fChain->SetBranchAddress("Ne2", &Ne2, &b_Ne2);
-   fChain->SetBranchAddress("Npad", &Npad, &b_Npad);
+   //fChain->SetBranchAddress("Ne1", &Ne1, &b_Ne1);
+   //fChain->SetBranchAddress("Ne2", &Ne2, &b_Ne2);
+   //fChain->SetBranchAddress("Npad", &Npad, &b_Npad);
    fChain->SetBranchAddress("Nt1", &Nt1, &b_Nt1);
    fChain->SetBranchAddress("Egas", &Egas, &b_Egas);
    fChain->SetBranchAddress("E1", &E1, &b_E1);
    fChain->SetBranchAddress("E2", &E2, &b_E2);
-   fChain->SetBranchAddress("Epad", &Epad, &b_Epad);
-   fChain->SetBranchAddress("Tgas", &Tgas, &b_Tgas);
-   fChain->SetBranchAddress("T1", &T1, &b_T1);
-   fChain->SetBranchAddress("T2", &T2, &b_T2);
-   fChain->SetBranchAddress("Tpad", &Tpad, &b_Tpad);
-   fChain->SetBranchAddress("Nfe", &Nfe, &b_Nfe);
-   fChain->SetBranchAddress("Nbe", &Nbe, &b_Nbe);
-   fChain->SetBranchAddress("Nsfe", Nsfe, &b_Nsfe);
-   fChain->SetBranchAddress("Nsbe", Nsbe, &b_Nsbe);
-   fChain->SetBranchAddress("Ef", Ef, &b_Ef);
-   fChain->SetBranchAddress("Eb", Eb, &b_Eb);
-   fChain->SetBranchAddress("Nft", &Nft, &b_Nft);
-   fChain->SetBranchAddress("Nbt", &Nbt, &b_Nbt);
-   fChain->SetBranchAddress("Nsft", Nsft, &b_Nsft);
-   fChain->SetBranchAddress("Nsbt", Nsbt, &b_Nsbt);
-   fChain->SetBranchAddress("Tf", Tf, &b_Tf);
-   fChain->SetBranchAddress("Tb", Tb, &b_Tb);
+   //fChain->SetBranchAddress("Epad", &Epad, &b_Epad);
+   //fChain->SetBranchAddress("Tgas", &Tgas, &b_Tgas);
+   //fChain->SetBranchAddress("T1", &T1, &b_T1);
+   //fChain->SetBranchAddress("T2", &T2, &b_T2);
+   //fChain->SetBranchAddress("Tpad", &Tpad, &b_Tpad);
+   //fChain->SetBranchAddress("Nfe", &Nfe, &b_Nfe);
+   //fChain->SetBranchAddress("Nbe", &Nbe, &b_Nbe);
+   //fChain->SetBranchAddress("Nsfe", Nsfe, &b_Nsfe);
+   //fChain->SetBranchAddress("Nsbe", Nsbe, &b_Nsbe);
+   //fChain->SetBranchAddress("Ef", Ef, &b_Ef);
+   //fChain->SetBranchAddress("Eb", Eb, &b_Eb);
+   //fChain->SetBranchAddress("Nft", &Nft, &b_Nft);
+   //fChain->SetBranchAddress("Nbt", &Nbt, &b_Nbt);
+   //fChain->SetBranchAddress("Nsft", Nsft, &b_Nsft);
+   //fChain->SetBranchAddress("Nsbt", Nsbt, &b_Nsbt);
+   //fChain->SetBranchAddress("Tf", Tf, &b_Tf);
+   //fChain->SetBranchAddress("Tb", Tb, &b_Tb);
+   std::cout << "Initialized tree with " << tree->GetEntries() << " entries." << std::endl;
 }
 inline Bool_t Selector::Notify()
 {

@@ -19,7 +19,7 @@ TChain* DataLoader::loadData(const char* dataFilename, const char* chainName) {
 
 TCutG* DataLoader::loadCut(const char* fileName, const char* cutName) {
 	TFile* file1 = new TFile(fileName);
-	TCutG* midCut = (TCutG*)file1->Get(cutName);
+	TCutG* midCut = (TCutG*) file1->Get(cutName);
 	return midCut;
 }
 

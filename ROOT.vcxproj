@@ -92,6 +92,7 @@
     <ClInclude Include="CalibrationClass.h" />
     <ClInclude Include="DataLoader.h" />
     <ClInclude Include="Selector.h" />
+    <ClInclude Include="SiliciumAnalyzer.h" />
     <ClInclude Include="SRIMclass.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
@@ -104,6 +105,7 @@
     <ClCompile Include="Selector.cpp" />
     <ClCompile Include="is507.cpp" />
     <ClCompile Include="ROOT.cpp" />
+    <ClCompile Include="SiliciumAnalyzer.cpp" />
     <ClCompile Include="TimeAnalyzer.cpp" />
     <ClCompile Include="timeHistograms.cpp" />
     <ClCompile Include="stdafx.cpp">
