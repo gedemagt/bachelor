@@ -22,12 +22,16 @@ private:
 	TCutG* leftCut;
 	TCutG* topRightCut;
 	TCutG* bottomCut;
+	TCutG* bottomCut2;
+	TCutG* bottomLeftCut;
 
 	// AL information
 	TH1F *allData;
 	TH1F *midData;
 	TH1F *leftData;
 	TH1F *bottomData;
+	TH1F *bottomData2;
+	TH1F *bottomLeftData;
 	TH1F *topRightData;
 
 };

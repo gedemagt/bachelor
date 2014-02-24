@@ -26,6 +26,8 @@ private:
 	TCutG* leftCut;
 	TCutG* topRightCut;
 	TCutG* bottomCut;
+	TCutG* bottomCut2;
+	TCutG* bottomLeftCut;
 
 	// AL tids information
 	TH1F *allClockl;
@@ -38,6 +40,11 @@ private:
 	// Bottom stuff
 	TH1F *bottomClockl;
 	TH1F *bottomClocks;
+
+	TH1F *bottomData2s;
+	TH1F *bottomLeftDatas;
+	TH1F *bottomData2l;
+	TH1F *bottomLeftDatal;
 
 	// Left stuff
 	TH1F *leftClockl;

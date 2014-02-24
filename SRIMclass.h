@@ -14,6 +14,7 @@ Written by Morten V. Lund (July 2012)
 #include <cstring>
 #include <cassert>
 #include "TGraph.h"
+#include "TString.h"
 using namespace std;
 
 class SRIM{
@@ -41,6 +42,7 @@ public:
   {
     m_SrimPath=new Char_t[200];
     strcat(m_SrimPath,Path);
+	cout << TString(m_SrimPath) << endl;
     Char_t dummy[10]="";
     assert(strncmp(m_SrimPath,dummy,100) != 0);  //Gives error if no path is specified.
     return;
@@ -295,9 +297,11 @@ void SRIM::SRIMLoader(Char_t *FileName){
   Char_t dummy[200];
   Char_t ev[10]="eV",mev[10]="MeV",a[10]="A",mm[10]="mm",m[10]="m";  //For unit recognition
   Char_t SrimPath[200]="";   //Needed to initialize the path correctly each time
+  cout<<"SRIM file to be opened is0: "<<SrimPath<<endl;
   strcat(SrimPath,m_SrimPath);
+  cout<<"SRIM file to be opened is1: "<<SrimPath<<endl;
   strcat(SrimPath,FileName);
-  cout<<"SRIM file to be opened is: "<<SrimPath<<endl;
+  cout<<"SRIM file to be opened is2: "<<SrimPath<<endl;
   
   //Loading data:
   ifstream data(SrimPath);

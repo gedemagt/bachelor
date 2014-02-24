@@ -14,6 +14,7 @@ TimeAnalyzer::TimeAnalyzer() {
 	bottomCut = l->loadCut("Histogrammer/cuts/bottomCut.root", "CUTG");
 	leftCut = l->loadCut("Histogrammer/cuts/leftCut.root", "CUTG");
 	topRightCut = l->loadCut("Histogrammer/cuts/topRightCut.root", "CUTG");
+	bottomCut2 = l->loadCut("Histogrammer/cuts/bottomCut2.root", "CUTG");
 
 	// AL tids information
 	allClockl = new TH1F("allClockl", "Al data: Clockl i sek.", 5000, 0, 3200000);

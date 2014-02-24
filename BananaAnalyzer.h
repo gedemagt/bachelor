@@ -21,11 +21,15 @@ private:
 	TCutG* leftCut;
 	TCutG* topRightCut;
 	TCutG* bottomCut;
+	TCutG* bottomCut2;
+	TCutG* bottomLeftCut;
 
 	//Histogrammer
 	TH2F *allData;
 	TH2F *midData;
 	TH2F *bottomData;
+	TH2F *bottomData2;
+	TH2F *bottomLeftData;
 	TH2F *leftData;
 	TH2F *topRightData;
 };

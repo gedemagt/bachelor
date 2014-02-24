@@ -13,6 +13,7 @@
 #include "SiliciumAnalyzer.h"
 #include "BananaAnalyzer.h"
 #include "TRint.h"
+#include "SRIMclass.h"
 
 using namespace std;
 
@@ -22,10 +23,13 @@ void timeHistograms();
 int _tmain(int argc, _TCHAR* argv[])
 {
 	TRint *theApp = new TRint("ROOT example", &argc, (char**)argv);
-	DataLoader* l = new DataLoader();
-	TChain* chain = l->loadData("FileName1.dat", "h7");
-	chain->Process(new Selector(new SiliciumAnalyzer()));
+	//DataLoader* l = new DataLoader();
+	//TChain* chain = l->loadData("FileName1.dat", "h7");
+	//chain->Process(new Selector(new SiliciumAnalyzer()));
 	//timeHistograms();
+	SRIM *ss = new SRIM();
+	
+	ss->Creategraphs();
 	theApp->Run();
 	return 0;
 }
