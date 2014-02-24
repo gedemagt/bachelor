@@ -28,8 +28,11 @@ int _tmain(int argc, _TCHAR* argv[])
 	//chain->Process(new Selector(new SiliciumAnalyzer()));
 	//timeHistograms();
 	SRIM *ss = new SRIM();
-	
+	ss->SetPathName("");
 	ss->Creategraphs();
+	TFile f("SRIM.root", "recreate");
+	f.Write();
+	f.WriteTObject((ss->Energy[3][3]));
 	theApp->Run();
 	return 0;
 }

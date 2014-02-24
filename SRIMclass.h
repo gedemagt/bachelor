@@ -42,9 +42,10 @@ public:
   {
     m_SrimPath=new Char_t[200];
     strcat(m_SrimPath,Path);
-	cout << TString(m_SrimPath) << endl;
+	cout << m_SrimPath << endl;
     Char_t dummy[10]="";
     assert(strncmp(m_SrimPath,dummy,100) != 0);  //Gives error if no path is specified.
+	m_SrimPath = "C:/Users/Jesper/Desktop/SRIM/";
     return;
   }
   void Creategraphs();
@@ -58,7 +59,7 @@ private:
 };
 
 void SRIM::Creategraphs(){
-  //Ion: Mg20
+  
   Char_t FileName[30]="Mg20Poly.txt";
   SRIM::SRIMLoader(FileName);
   Range[0][0] = new TGraph(131,Eion,ProjRange);
@@ -297,11 +298,9 @@ void SRIM::SRIMLoader(Char_t *FileName){
   Char_t dummy[200];
   Char_t ev[10]="eV",mev[10]="MeV",a[10]="A",mm[10]="mm",m[10]="m";  //For unit recognition
   Char_t SrimPath[200]="";   //Needed to initialize the path correctly each time
-  cout<<"SRIM file to be opened is0: "<<SrimPath<<endl;
   strcat(SrimPath,m_SrimPath);
-  cout<<"SRIM file to be opened is1: "<<SrimPath<<endl;
   strcat(SrimPath,FileName);
-  cout<<"SRIM file to be opened is2: "<<SrimPath<<endl;
+  cout<<"SRIM file to be opened is: "<<SrimPath<<endl;
   
   //Loading data:
   ifstream data(SrimPath);
