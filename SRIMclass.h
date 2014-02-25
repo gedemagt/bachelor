@@ -40,6 +40,7 @@ public:
   //Function to set the path to the SRIM data files:
   void SetPathName(const Char_t Path[])
   {
+	  cout << Path << endl;
     m_SrimPath=new Char_t[200];
     strcat(m_SrimPath,Path);
 	cout << m_SrimPath << endl;

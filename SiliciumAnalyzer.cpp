@@ -35,19 +35,19 @@ void SiliciumAnalyzer::fillHistograms(Short_t Egas, Short_t E1) {
 	if (midCut->IsInside(E1, Egas)){
 		midData->Fill(E1);
 	}
-	else if (bottomCut->IsInside(E1, Egas)){
+	if (bottomCut->IsInside(E1, Egas)){
 		bottomData->Fill(E1);
 	}
-	else if (bottomCut2->IsInside(E1, Egas)){
+	if (bottomCut2->IsInside(E1, Egas)){
 		bottomData2->Fill(E1);
 	}
-	else if (bottomLeftCut->IsInside(E1, Egas)){
+	if (bottomLeftCut->IsInside(E1, Egas)){
 		bottomLeftData->Fill(E1);
 	}
-	else if (leftCut->IsInside(E1, Egas)){
+	if (leftCut->IsInside(E1, Egas)){
 		leftData->Fill(E1);
 	}
-	else if (topRightCut->IsInside(E1, Egas)){
+	if (topRightCut->IsInside(E1, Egas)){
 		topRightData->Fill(E1);
 	}
 

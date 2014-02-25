@@ -12,8 +12,8 @@
 #include "TimeAnalyzer.h"
 #include "SiliciumAnalyzer.h"
 #include "BananaAnalyzer.h"
+#include "GasAnalyzer.h"
 #include "TRint.h"
-#include "SRIMclass.h"
 
 using namespace std;
 
@@ -23,16 +23,10 @@ void timeHistograms();
 int _tmain(int argc, _TCHAR* argv[])
 {
 	TRint *theApp = new TRint("ROOT example", &argc, (char**)argv);
-	//DataLoader* l = new DataLoader();
-	//TChain* chain = l->loadData("FileName1.dat", "h7");
-	//chain->Process(new Selector(new SiliciumAnalyzer()));
+	DataLoader* l = new DataLoader();
+	TChain* chain = l->loadData("FileName1.dat", "h7");
+	chain->Process(new Selector(new GasAnalyzer()));
 	//timeHistograms();
-	SRIM *ss = new SRIM();
-	ss->SetPathName("");
-	ss->Creategraphs();
-	TFile f("SRIM.root", "recreate");
-	f.Write();
-	f.WriteTObject((ss->Energy[3][3]));
 	theApp->Run();
 	return 0;
 }

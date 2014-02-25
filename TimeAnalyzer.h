@@ -41,10 +41,11 @@ private:
 	TH1F *bottomClockl;
 	TH1F *bottomClocks;
 
-	TH1F *bottomData2s;
-	TH1F *bottomLeftDatas;
-	TH1F *bottomData2l;
-	TH1F *bottomLeftDatal;
+	TH1F *bottomClock2s;
+	TH1F *bottomClock2l;
+
+	TH1F *bottomLeftClocks;
+	TH1F *bottomLeftClockl;
 
 	// Left stuff
 	TH1F *leftClockl;
