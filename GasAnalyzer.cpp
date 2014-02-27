@@ -25,8 +25,6 @@ void GasAnalyzer::fillHistograms(Short_t Egas, Short_t E1) {
 			peak2->Fill(Egas);
 		}
 	}
-
-
 }
 
 char* GasAnalyzer::getDestination() {
