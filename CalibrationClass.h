@@ -64,12 +64,13 @@ class Calibration{
     return;
   }
     
-  Double_t Epad_calib,E1_calib,Efront[16],Eback[16];
+  Double_t Epad_calib,E1_calib,Egas_calib,Efront[16],Eback[16];
   
  private:
   void Initialize(){
     Epad_calib=0.;
     E1_calib=0.;
+	Egas_calib=0.;
     for(Int_t ii=0;ii<16;ii++){
       Efront[ii]=0.;
       Eback[ii]=0.;

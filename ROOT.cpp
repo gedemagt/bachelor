@@ -15,6 +15,7 @@
 #include "GasAnalyzer.h"
 #include "TRint.h"
 #include "Mg20GasAnalyzer.h"
+#include "Mg20SiliciumAnalyzer.h"
 #include "SRIMLoader.h"
 
 using namespace std;
@@ -25,14 +26,15 @@ void timeHistograms();
 int _tmain(int argc, _TCHAR* argv[])
 {
 	TRint *theApp = new TRint("ROOT example", &argc, (char**)argv);
-	SRIMLoader* loader = new SRIMLoader();
-	TGraph* g = loader->LoadSRIM("C:/Users/Jesper/Desktop/SRIM/pCF4_mig.txt");
+	
+	SRIMLoader* l = new SRIMLoader();
+	TGraph* g = l->LoadSRIM("C:/Users/Jesper/Desktop/SRIM/pCF4_mig.txt");
 	cout << g->Eval(1862) << endl;
 	cout << g->Eval(2036) << endl;
-	//g->Draw();
+	
 	//DataLoader* l = new DataLoader();
-	//TChain* chain = l->loadData("mg20.dat", "h7");
-	//chain->Process(new Selector(new Mg20GasAnalyzer()));
+	//TChain* chain = l->loadData("mg21.dat", "h7");
+	//chain->Process(new Selector(new GasAnalyzer()));
 	//timeHistograms();
 	theApp->Run();
 	return 0;

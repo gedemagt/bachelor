@@ -93,6 +93,7 @@
     <ClInclude Include="DataLoader.h" />
     <ClInclude Include="GasAnalyzer.h" />
     <ClInclude Include="Mg20GasAnalyzer.h" />
+    <ClInclude Include="Mg20SiliciumAnalyzer.h" />
     <ClInclude Include="Selector.h" />
     <ClInclude Include="SiliciumAnalyzer.h" />
     <ClInclude Include="SRIMclass.h" />
@@ -107,6 +108,7 @@
     <ClCompile Include="DataLoader.cpp" />
     <ClCompile Include="GasAnalyzer.cpp" />
     <ClCompile Include="Mg20GasAnalyzer.cpp" />
+    <ClCompile Include="Mg20SiliciumAnalyzer.cpp" />
     <ClCompile Include="Selector.cpp" />
     <ClCompile Include="is507.cpp" />
     <ClCompile Include="ROOT.cpp" />

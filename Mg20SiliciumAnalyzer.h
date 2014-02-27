@@ -1,14 +1,13 @@
 #pragma once
 #include "Analyzer.h"
-#include "TCutG.h"
 #include "TH1F.h"
 #include "TFile.h"
 
-class GasAnalyzer : public Analyzer {
+class Mg20SiliciumAnalyzer : public Analyzer {
 
 public:
-	GasAnalyzer();
-	virtual ~GasAnalyzer() {};
+	Mg20SiliciumAnalyzer();
+	virtual ~Mg20SiliciumAnalyzer() {};
 	void analyze(Selector* s);
 	void terminate();
 	char* getDestination();
@@ -20,9 +19,7 @@ private:
 	Short_t Egas;
 
 	// AL information
-	TH1F *peak1Gas;
-	TH1F *peak2Gas;
-	TH1F *peak1Si;
-	TH1F *peak2Si;
+	TH1F *peak1;
+	TH1F *peak2;
 
 };
