@@ -22,16 +22,16 @@ using namespace std;
 
 void is507();
 void timeHistograms();
+void iterateSRIM();
 
 int _tmain(int argc, _TCHAR* argv[])
 {
 	TRint *theApp = new TRint("ROOT example", &argc, (char**)argv);
 	
-	SRIMLoader* l = new SRIMLoader();
-	TGraph* g = l->LoadSRIM("C:/Users/Jesper/Desktop/SRIM/pCF4_mig.txt");
-	cout << g->Eval(1862) << endl;
-	cout << g->Eval(2036) << endl;
-	
+	//SRIMLoader* l = new SRIMLoader();
+	//TGraph* g = l->LoadSRIM("C:/Users/Jesper/Desktop/SRIM/alfaCF4_mig.txt");
+	//g->Draw();
+	iterateSRIM();
 	//DataLoader* l = new DataLoader();
 	//TChain* chain = l->loadData("mg21.dat", "h7");
 	//chain->Process(new Selector(new GasAnalyzer()));

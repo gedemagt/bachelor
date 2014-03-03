@@ -107,6 +107,7 @@
     <ClCompile Include="binOptimize.cpp" />
     <ClCompile Include="DataLoader.cpp" />
     <ClCompile Include="GasAnalyzer.cpp" />
+    <ClCompile Include="IterateSRIM.cpp" />
     <ClCompile Include="Mg20GasAnalyzer.cpp" />
     <ClCompile Include="Mg20SiliciumAnalyzer.cpp" />
     <ClCompile Include="Selector.cpp" />

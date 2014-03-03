@@ -107,5 +107,8 @@
     <ClCompile Include="Mg20SiliciumAnalyzer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="IterateSRIM.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
