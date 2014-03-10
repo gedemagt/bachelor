@@ -25,7 +25,7 @@ void Mg20SiliciumAnalyzer::fillHistograms(Short_t Egas, Short_t E1) {
 	}
 }
 
-char* Mg20SiliciumAnalyzer::getDestination() {
+const char* Mg20SiliciumAnalyzer::getDestination() {
 	return "Siliciummg20";
 }
 

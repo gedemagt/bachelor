@@ -9,5 +9,5 @@ public:
 	virtual ~Analyzer(void) {};
 	virtual void analyze(Selector *s) = 0;
 	virtual void terminate() = 0;
-	virtual char* getDestination() = 0;
+	virtual const char* getDestination() = 0;
 };

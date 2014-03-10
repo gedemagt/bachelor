@@ -4,8 +4,8 @@
 // from TChain h7/
 //////////////////////////////////////////////////////////
 
-//#ifndef Selector_h
-//#define Selector_h
+#ifndef Selector_h
+#define Selector_h
 
 #include <TROOT.h>
 #include <TChain.h>
@@ -170,3 +170,4 @@ inline Bool_t Selector::Notify()
 
    return kTRUE;
 }
+#endif 

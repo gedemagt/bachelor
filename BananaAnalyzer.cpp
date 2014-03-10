@@ -53,8 +53,8 @@ void BananaAnalyzer::fillHistograms(Short_t Egas, Short_t E1) {
 
 }
 
-char* BananaAnalyzer::getDestination() {
-	return "bananamg20";
+const char* BananaAnalyzer::getDestination() {
+	return "banana";
 }
 
 void BananaAnalyzer::terminate() {

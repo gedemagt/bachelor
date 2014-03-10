@@ -11,7 +11,7 @@ public:
 	virtual ~BananaAnalyzer() {};
 	void analyze(Selector* s);
 	void terminate();
-	char* getDestination();
+	const char* getDestination();
 
 private:
 

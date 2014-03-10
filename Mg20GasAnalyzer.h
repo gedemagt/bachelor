@@ -10,7 +10,7 @@ public:
 	virtual ~Mg20GasAnalyzer() {};
 	void analyze(Selector* s);
 	void terminate();
-	char* getDestination();
+	const char* getDestination();
 
 private:
 	void fillHistograms(Short_t Egas, Short_t E1);

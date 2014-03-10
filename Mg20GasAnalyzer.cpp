@@ -25,7 +25,7 @@ void Mg20GasAnalyzer::fillHistograms(Short_t Egas, Short_t E1) {
 	}
 }
 
-char* Mg20GasAnalyzer::getDestination() {
+const char* Mg20GasAnalyzer::getDestination() {
 	return "Gasmg20";
 }
 

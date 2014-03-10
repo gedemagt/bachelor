@@ -3,20 +3,23 @@
 #include "TCutG.h"
 #include "TH1F.h"
 #include "TFile.h"
+#include "Calibration.h"
 
 class SiliciumAnalyzer : public Analyzer {
 
 public:
-	SiliciumAnalyzer();
+	SiliciumAnalyzer(Calib* ca);
 	virtual ~SiliciumAnalyzer() {};
 	void analyze(Selector* s);
 	void terminate();
-	char* getDestination();
+	const char* getDestination();
 
 private:
-	void fillHistograms(Short_t Egas, Short_t E1);
+	void fillHistograms(Short_t Egas_ch, Short_t E1_ch, Short_t Egas, Short_t E1);
 
 	Short_t e1;
+
+	Calib* ca;
 
 	TCutG* midCut;
 	TCutG* leftCut;

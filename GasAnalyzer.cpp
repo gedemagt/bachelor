@@ -7,11 +7,19 @@ using namespace std;
 
 GasAnalyzer::GasAnalyzer() {
 
-	peak1Gas = new TH1F("peak1Gas", "Egas", 500, 0, 1000);
-	peak2Gas = new TH1F("peak2Gas", "Egas", 500, 0, 1000);
+	DataLoader* l = new DataLoader();
+	midCut = l->loadCut("Histogrammer/cuts/midCut.root", "CUTG");
+	leftCut = l->loadCut("Histogrammer/cuts/leftCut.root", "CUTG");
 
-	peak1Si = new TH1F("peak1Si", "Egas", 150, 1100, 1400);
-	peak2Si = new TH1F("peak2Si", "Egas", 200, 1200, 1600);
+	peak1Gas = new TH1F("proton1gas","Proton peak1 i gas", 500, 0, 1000);
+	peak2Gas = new TH1F("proton2gas","Proton peak2 i gas", 500, 0, 1000);
+
+	peak1Si = new TH1F("proton1Si","Proton peak1 i Si", 150, 1100, 1400);
+	peak2Si = new TH1F("proton2Si","Proton peak2 i Si", 200, 1200, 1600);
+
+	alfa1Gas = new TH1F("alfaRight", "Right alfa", 300, 1000, 3300);
+	alfa2Gas = new TH1F("alfaLeft", "Left alfa", 300, 1000, 3000);
+
 }
 
 void GasAnalyzer::analyze(Selector* s) {
@@ -29,10 +37,16 @@ void GasAnalyzer::fillHistograms(Short_t Egas, Short_t E1) {
 			peak2Si->Fill(E1);
 		}
 	}
+	if (midCut->IsInside(E1, Egas)) {
+		alfa1Gas->Fill(Egas);
+	}
+	if (leftCut->IsInside(E1, Egas)) {
+		alfa2Gas->Fill(Egas);
+	}
 }
 
-char* GasAnalyzer::getDestination() {
-	return "Gas";
+const char* GasAnalyzer::getDestination() {
+	return "gas";
 }
 
 void GasAnalyzer::terminate() {

@@ -11,7 +11,7 @@ public:
 	virtual ~GasAnalyzer() {};
 	void analyze(Selector* s);
 	void terminate();
-	char* getDestination();
+	const char* getDestination();
 
 private:
 	void fillHistograms(Short_t Egas, Short_t E1);
@@ -24,5 +24,11 @@ private:
 	TH1F *peak2Gas;
 	TH1F *peak1Si;
 	TH1F *peak2Si;
+
+	TH1F *alfa1Gas;
+	TH1F *alfa2Gas;
+
+	TCutG* midCut;
+	TCutG* leftCut;
 
 };
