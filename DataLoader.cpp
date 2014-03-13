@@ -23,3 +23,9 @@ TCutG* DataLoader::loadCut(const char* fileName, const char* cutName) {
 	return midCut;
 }
 
+TH1F* DataLoader::load1DHistogram(const char* fileName, const char* histoName) {
+	TFile* file1 = new TFile(fileName);
+	TH1F* histo = (TH1F*) file1->Get(histoName);
+	return histo;
+}
+

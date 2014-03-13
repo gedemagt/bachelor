@@ -18,6 +18,9 @@
 #include "Mg20SiliciumAnalyzer.h"
 #include "SRIMLoader.h"
 #include "Calibration.h"
+#include "ProtonMg21Analyzer.h"
+
+void TimeAnalysis();
 
 using namespace std;
 
@@ -26,10 +29,12 @@ int _tmain(int argc, _TCHAR* argv[])
 	TRint *theApp = new TRint("ROOT example", &argc, (char**)argv);
 	DataLoader* l = new DataLoader();
 	TChain* chain = l->loadData("mg21.dat", "h7");
-	//Calib *c = new Calib(3);
-	//SiliciumAnalyzer* sa = new SiliciumAnalyzer(c);
-	Selector *s = new Selector(new GasAnalyzer());
+	Calib *c = new Calib(1);
+	SiliciumAnalyzer* sa = new SiliciumAnalyzer(c);
+	Selector *s = new Selector(new ProtonMg21Analyzer());
 	chain->Process(s);
+
+	//TimeAnalysis();
 	theApp->Run();
 	return 0;
 }

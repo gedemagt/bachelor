@@ -76,7 +76,6 @@ Bool_t Selector::Process(Long64_t entry)
 
 	a->analyze(this);
 
-	//cout.precision(3);
 	nEvents++;
 	if (entry % 10000 == 0){ 
 		cout << "\rProgress: " << ((double)nEvents) / ((double)fChain->GetEntries()) * 100 << "%    " << flush; 
@@ -97,7 +96,6 @@ void Selector::Terminate()
 {
 	a->terminate();
 	TString rootFile = "Histogrammer/" +TString(a->getDestination()) + ".root";
-	//rootFile += ;
 	TFile f(rootFile, "recreate");
 	fOutput->Write();
 	cout << endl;
@@ -108,7 +106,7 @@ void Selector::Terminate()
 
 }
 
-Selector::Selector(Analyzer* ana)
+Selector::Selector(Analyzer* ana) : Selector()
 {
 	a = ana;
 }

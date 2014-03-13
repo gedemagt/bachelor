@@ -95,6 +95,7 @@
     <ClInclude Include="GasAnalyzer.h" />
     <ClInclude Include="Mg20GasAnalyzer.h" />
     <ClInclude Include="Mg20SiliciumAnalyzer.h" />
+    <ClInclude Include="ProtonMg21Analyzer.h" />
     <ClInclude Include="Selector.h" />
     <ClInclude Include="SiliciumAnalyzer.h" />
     <ClInclude Include="SRIMclass.h" />
@@ -111,12 +112,14 @@
     <ClCompile Include="IterateSRIM.cpp" />
     <ClCompile Include="Mg20GasAnalyzer.cpp" />
     <ClCompile Include="Mg20SiliciumAnalyzer.cpp" />
+    <ClCompile Include="ProtonMg21Analyzer.cpp" />
     <ClCompile Include="Selector.cpp" />
     <ClCompile Include="is507.cpp" />
     <ClCompile Include="ROOT.cpp" />
     <ClCompile Include="SiliciumAnalyzer.cpp" />
     <ClCompile Include="iteratePeakEnergy.cpp" />
     <ClCompile Include="SRIM.cpp" />
+    <ClCompile Include="TimeAnalysis.cpp" />
     <ClCompile Include="TimeAnalyzer.cpp" />
     <ClCompile Include="timeHistograms.cpp" />
     <ClCompile Include="stdafx.cpp">
