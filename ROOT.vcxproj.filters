@@ -69,6 +69,9 @@
     <ClInclude Include="ProtonMg21Analyzer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Kolmogorow.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -123,6 +126,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="TimeAnalysis.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Kolmogorow.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

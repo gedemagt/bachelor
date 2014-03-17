@@ -93,6 +93,7 @@
     <ClInclude Include="CalibrationClass.h" />
     <ClInclude Include="DataLoader.h" />
     <ClInclude Include="GasAnalyzer.h" />
+    <ClInclude Include="Kolmogorow.h" />
     <ClInclude Include="Mg20GasAnalyzer.h" />
     <ClInclude Include="Mg20SiliciumAnalyzer.h" />
     <ClInclude Include="ProtonMg21Analyzer.h" />
@@ -110,6 +111,7 @@
     <ClCompile Include="DataLoader.cpp" />
     <ClCompile Include="GasAnalyzer.cpp" />
     <ClCompile Include="IterateSRIM.cpp" />
+    <ClCompile Include="Kolmogorow.cpp" />
     <ClCompile Include="Mg20GasAnalyzer.cpp" />
     <ClCompile Include="Mg20SiliciumAnalyzer.cpp" />
     <ClCompile Include="ProtonMg21Analyzer.cpp" />
