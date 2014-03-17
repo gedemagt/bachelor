@@ -5,8 +5,15 @@ using namespace std;
 void TimeAnalysis() {
 
 	DataLoader *l = new DataLoader();
-	TH1F *f = l->load1DHistogram("Histogrammer/protonmg21.root", "peak6-time");
-	TH1F *ff = l->load1DHistogram("Histogrammer/protonmg21.root", "peak5-time");
-	Double_t prob = f->KolmogorovTest(ff);
+	TH1F *protonpeak = l->load1DHistogram("Histogrammer/protonmg21.root", "peak6-time");
+	TH1F *mid = l->load1DHistogram("Histogrammer/time2.root", "midClock");
+	TH1F *left = l->load1DHistogram("Histogrammer/time2.root", "leftClocks");
+
+	Double_t prob;
+
+	prob = protonpeak->KolmogorovTest(left);
+	cout << prob << endl;
+
+	prob = protonpeak->KolmogorovTest(mid);
 	cout << prob << endl;
 }

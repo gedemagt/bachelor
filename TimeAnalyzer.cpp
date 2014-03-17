@@ -92,7 +92,7 @@ void TimeAnalyzer::fillHistograms(Short_t Egas, Short_t E1, Int_t Clockl) {
 }
 
 const char* TimeAnalyzer::getDestination() {
-	return "time";
+	return "time2";
 }
 
 void TimeAnalyzer::terminate() {
