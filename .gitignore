@@ -2,7 +2,7 @@
 Data/
 
 # Histogrammer
-Histogrammer/
+Histogrammer/*.root
 
 # Compiled Object files
 *.slo
