@@ -5,10 +5,15 @@ class Kolmogorow {
 public:
 	Kolmogorow(){};
 	~Kolmogorow(){};
-	virtual TGraph* generateFunction(TH1F* histo);
-	virtual Double_t testHistogram(TH1F* histo);
-	virtual Double_t compareHistograms(TH1F* h1, TH1F* h2);
+	virtual TGraph* setReferenceHistogram(TH1F* histo);
+	virtual Double_t testVsHistogram(TH1F* histo);
+	virtual Double_t testVsFunction(TH1F* histo);
+	virtual Double_t testBoth(TH1F* histo);
 private:
 	TH1F* getCumHisto(TH1F* histo);
-	TGraph * graph;
+	TGraph * reference_graph;
+	TH1F* reference;
+	TH1F* reference_cum;
+
+	Double_t D_h, W_h, A_h, D_f, W_f, A_f;
 };

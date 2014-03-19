@@ -23,12 +23,15 @@ void TimeAnalysis() {
 	TH1F *protonpeak5 = l->load1DHistogram("Histogrammer/protonmg21.root", "peak5-time");
 	TH1F *left = l->load1DHistogram("Histogrammer/time2.root", "leftClocks");
 	TH1F *mid = l->load1DHistogram("Histogrammer/time2.root", "midClock");
-	TGraph* g = k->generateFunction(protonpeak);
-	//k->testHistogram(protonpeak);
-	cout << "Proton peak 5" << endl;
-	k->compareHistograms(protonpeak, protonpeak5);
-	cout << "Left" << endl;
-	k->compareHistograms(protonpeak, left);
-	cout << "Mid" << endl;
-	k->compareHistograms(protonpeak, mid);
+	
+	TGraph* g = k->setReferenceHistogram(protonpeak);
+	k->testBoth(protonpeak);
+	k->testBoth(protonpeak5);
+	k->testBoth(left);
+	k->testBoth(mid);
+	//k->testVsFunction(protonpeak);
+	//k->testVsHistogram(protonpeak);
+	//k->testVsHistogram(protonpeak5);
+	//k->compareHistograms(protonpeak, left);
+	//k->compareHistograms(protonpeak, mid);
 }
