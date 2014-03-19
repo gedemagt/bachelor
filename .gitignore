@@ -4,6 +4,12 @@ Data/
 # Histogrammer
 Histogrammer/*.root
 
+#Pictures
+*.pdf
+*.png
+*.jpg
+*.jpeg
+
 # Compiled Object files
 *.slo
 *.lo
