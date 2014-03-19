@@ -28,23 +28,17 @@ using namespace std;
 int _tmain(int argc, _TCHAR* argv[])
 {
 	TRint *theApp = new TRint("ROOT example", &argc, (char**)argv);
-	DataLoader* l = new DataLoader();
+	//DataLoader* l = new DataLoader();
 	//TChain* chain = l->loadData("mg21.dat", "h7");
 	//Calib *c = new Calib(1);
 	//SiliciumAnalyzer* sa = new SiliciumAnalyzer(c);
-	//Selector *s = new Selector(new TimeAnalyzer());
-	//chain->Process(s);
+	//Selector *s = new Selector(new ProtonMg21Analyzer());
+	////chain->Process(s);
 	////delete s;
-	//Selector *s2 = new Selector(new ProtonMg21Analyzer());
+	//Selector *s2 = new Selector(new TimeAnalyzer());
 	//chain->Process(s2);
 
-	//TimeAnalysis();
-	Kolmogorow* k = new Kolmogorow();
-	TH1F *protonpeak = l->load1DHistogram("Histogrammer/protonmg21.root", "peak6-time");
-	TGraph* g = k->generateFunction(protonpeak);
-	k->testHistogram(protonpeak);
-	//g->Draw();
-	//protonpeak->Draw();
+	TimeAnalysis();
 	theApp->Run();
 	return 0;
 }

@@ -32,7 +32,7 @@ ProtonMg21Analyzer::ProtonMg21Analyzer() {
 		cut c = cuts[i];
 		Int_t distance = c.right - c.left;
 		peakHistograms[i] = TH1F(TString("peak").Append(c.name), TString("Peak ").Append(c.name), distance, c.left, c.right);
-		timeHistograms[i] = TH1F(TString("peak").Append(c.name).Append("-time"), TString("Peak ").Append(c.name), 500, 0, 5000);
+		timeHistograms[i] = TH1F(TString("peak").Append(c.name).Append("-time"), TString("Peak ").Append(c.name), 5000, 0, 5000);
 	}
 }
 

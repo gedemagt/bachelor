@@ -24,10 +24,13 @@ BananaAnalyzer::BananaAnalyzer() {
 	bottomLeftData = new TH2F("bottomLeftBanan", "BundLeft data: E1 vs. Egas (counts/5kev)", 900, 0, 4500, 900, 0, 4500);
 	leftData = new TH2F("leftBanan", "Left data: E1 vs. Egas (counts/5kev)", 900, 0, 4500, 900, 0, 4500);
 	topRightData = new TH2F("topRightBanan", "Right data: E1 vs. Egas (counts/5kev)", 900, 0, 4500, 900, 0, 4500);
+
+	extra = new TH2F("ekstra", "Al data: E1 vs. Egas (counts/5kev)", 900, 0, 4500, 900, 0, 4500);
 }
 
 void BananaAnalyzer::analyze(Selector* s) {
 	fillHistograms(s->Egas, s->E1);
+	if (s->Epad != -1000 && s->Epad != 0) extra->Fill(s->E1, s->Egas);
 }
 
 void BananaAnalyzer::fillHistograms(Short_t Egas, Short_t E1) {

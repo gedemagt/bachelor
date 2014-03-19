@@ -32,4 +32,6 @@ private:
 	TH2F *bottomLeftData;
 	TH2F *leftData;
 	TH2F *topRightData;
+
+	TH2F* extra;
 };
