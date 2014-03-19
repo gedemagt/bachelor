@@ -28,32 +28,34 @@ private:
 	TCutG* bottomCut;
 	TCutG* bottomCut2;
 	TCutG* bottomLeftCut;
+	TCutG* overflowCut;
+	TCutG* bottomClock3sCut;
+	TCutG* bottomClock3BigCut;
 
 	// AL tids information
-	TH1F *allClockl;
 	TH1F *allClocks;
 
 	// Mid stuff
-	TH1F *midClockl;
 	TH1F *midClocks;
 
 	// Bottom stuff
-	TH1F *bottomClockl;
 	TH1F *bottomClocks;
 
 	TH1F *bottomClock2s;
-	TH1F *bottomClock2l;
 
 	TH1F *bottomLeftClocks;
-	TH1F *bottomLeftClockl;
 
 	// Left stuff
-	TH1F *leftClockl;
 	TH1F *leftClocks;
 
 	// Top right stuff
-	TH1F *topRightClockl;
 	TH1F *topRightClocks;
+
+	// Bottom new cut
+	TH1F *bottomClock3s;
+	TH1F *bottomClockBigCut;
+
+	TH1F *overflow;
 
 
 };
