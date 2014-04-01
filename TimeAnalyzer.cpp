@@ -3,47 +3,61 @@
 #include "DataLoader.h"
 #include "Selector.h"
 #include "TString.h"
+#include "Cuts.h"
 #include <iostream>
 using namespace std;
+
+struct cut {
+	TCutG* tcut;
+	char* name;
+	TH1F* histo;
+};
 
 TimeAnalyzer::TimeAnalyzer() {
 	
 	// Load cuts
 	DataLoader* l = new DataLoader();
+	c = new Cuts(15);
+
 	midCut = l->loadCut("Histogrammer/cuts/midCut.root", "CUTG");
 	bottomCut = l->loadCut("Histogrammer/cuts/bottomCut.root", "CUTG");
 	bottomCut2 = l->loadCut("Histogrammer/cuts/bottomCut2.root", "CUTG");
 	bottomLeftCut = l->loadCut("Histogrammer/cuts/bottomLeftCut.root", "CUTG");
 	leftCut = l->loadCut("Histogrammer/cuts/lotofcuts.root", "left");
 	topRightCut = l->loadCut("Histogrammer/cuts/topRightCut.root", "CUTG");
-	bottomCut2 = l->loadCut("Histogrammer/cuts/bottomCut2.root", "CUTG");
 	bottomClock3sCut = l->loadCut("Histogrammer/cuts/lotofcuts.root","bottom1");
 	overflowCut = l->loadCut("Histogrammer/cuts/lotofcuts.root", "overflow");
 	bottomClock3BigCut = l->loadCut("Histogrammer/cuts/protoncuts.root", "bigcut");
+	
+
+	TCutG* c1 = l->loadCut("Histogrammer/cuts/alphacuts.root", "Center1");
+	TCutG* c2 = l->loadCut("Histogrammer/cuts/alphacuts.root", "center2");
+	TCutG* c3 = l->loadCut("Histogrammer/cuts/alphacuts.root", "center3");
+	TCutG* c4 = l->loadCut("Histogrammer/cuts/alphacuts.root", "center4");
+	TCutG* ll = l->loadCut("Histogrammer/cuts/alphacuts.root", "left");
+	TCutG* between = l->loadCut("Histogrammer/cuts/alphacuts.root", "between");
+
+	c->setStandard1D(5000, 0, 5000);
+
+	c->add1DCut(c1, "alpha_c1");
+	c->add1DCut(c2, "alpha_c2");
+	c->add1DCut(c3, "alpha_c3");
+	c->add1DCut(c4, "alpha_c4");
+	c->add1DCut(ll, "alpha_left");
+	c->add1DCut(between, "alpha_between");
+
+	c->add1DCut(midCut, "mid");
+	c->add1DCut(bottomCut, "bottom");
+	c->add1DCut(bottomCut2, "bottom2");
+	c->add1DCut(bottomLeftCut, "bottomLeft");
+	c->add1DCut(leftCut, "left");
+	c->add1DCut(topRightCut, "topRight");
+	c->add1DCut(bottomClock3sCut, "bottom3");
+	c->add1DCut(overflowCut, "overflow");
+	c->add1DCut(bottomClock3BigCut, "bottom3Big");
 
 	// AL tids information
 	allClocks = new TH1F("allClocks", "Al data: Clockl i sek.", 5000, 0, 5000);
-
-	// Mid stuff
-	midClocks = new TH1F("midClock", "Midt: Clockl i sek.", 5000, 0, 5000);
-
-	// Bottom stuff
-	bottomClocks = new TH1F("bottomClocks", "Bund: Clockl i sek.", 5000, 0, 5000);
-
-	bottomClock2s = new TH1F("bottomClock2s", "Bund: Clockl i sek.", 5000, 0, 5000);
-
-	bottomLeftClocks = new TH1F("bottomLeftClocks", "Bund: Clockl i sek.", 5000, 0, 5000);
-
-	bottomClock3s = new TH1F("bottomClocks3", "Bund: Clockl i sek.", 5000, 0, 5000);
-	bottomClockBigCut = new TH1F("bottomClockBigCut", "Bund: Clockl i sek.", 5000, 0, 5000);
-
-	// Left stuff
-	leftClocks = new TH1F("leftClocks", "Left: Clockl i sek.", 5000, 0, 5000);
-
-	overflow = new TH1F("overflow", "Left overflow: Clockl i sek.", 5000, 0, 5000);
-
-	// Top right stuff
-	topRightClocks = new TH1F("topRightClocks", "Top/Højre: Clockl i sek.", 5000, 0, 5000);
 
 }
 
@@ -59,40 +73,9 @@ void TimeAnalyzer::analyze(Selector* s) {
 			clockllast = s->Clockl;
 			Nt1last = s->Nt1;
 		}
-		fillHistograms(egas, e1, clockl);
+		c->fill1D(e1, egas, clocks);
+		allClocks->Fill(clocks);
 	}
-}
-
-void TimeAnalyzer::fillHistograms(Short_t Egas, Short_t E1, Int_t Clockl) {
-	allClocks->Fill(clocks);
-	if (midCut->IsInside(E1, Egas)){
-		midClocks->Fill(clocks);
-	}
-	if (bottomCut->IsInside(E1, Egas)){
-		bottomClocks->Fill(clocks);
-	}
-	if (bottomCut2->IsInside(E1, Egas)){
-		bottomClock2s->Fill(clocks);
-	}
-	if (bottomLeftCut->IsInside(E1, Egas)){
-		bottomLeftClocks->Fill(clocks);
-	}
-	if (leftCut->IsInside(E1, Egas)){
-		leftClocks->Fill(clocks);
-	}
-	if (topRightCut->IsInside(E1, Egas)){
-		topRightClocks->Fill(clocks);
-	}
-	if (overflowCut->IsInside(E1, Egas)) {
-		overflow->Fill(clocks);
-	}
-	if (bottomClock3sCut->IsInside(E1, Egas)) {
-		bottomClock3s->Fill(clocks);
-	}
-	if (bottomClock3BigCut->IsInside(E1, Egas)) {
-		bottomClockBigCut->Fill(clocks);
-	}
-
 }
 
 const char* TimeAnalyzer::getDestination() {
