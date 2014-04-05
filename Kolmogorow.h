@@ -13,7 +13,6 @@ public:
 	virtual Double_t testBoth(TH1F* histo);
 	virtual Double_t testBoth(TH1F* histo, Int_t lower_bin, Int_t upper_bin);
 private:
-	TH1F* getCumHisto(TH1F* histo, Int_t lower_bin, Int_t upper_bin);
 	TGraph * reference_graph;
 	TH1F* reference;
 	TH1F* reference_cum;

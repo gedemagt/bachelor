@@ -17,7 +17,7 @@ TimeAnalyzer::TimeAnalyzer() {
 	
 	// Load cuts
 	DataLoader* l = new DataLoader();
-	c = new Cuts(15);
+	c = new Cuts(25);
 
 	midCut = l->loadCut("Histogrammer/cuts/midCut.root", "CUTG");
 	bottomCut = l->loadCut("Histogrammer/cuts/bottomCut.root", "CUTG");
@@ -37,6 +37,14 @@ TimeAnalyzer::TimeAnalyzer() {
 	TCutG* ll = l->loadCut("Histogrammer/cuts/alphacuts.root", "left");
 	TCutG* between = l->loadCut("Histogrammer/cuts/alphacuts.root", "between");
 
+	TCutG* proton_right_cut = l->loadCut("Histogrammer/cuts/tailcuts.root", "right");
+	TCutG* proton_mid_cut = l->loadCut("Histogrammer/cuts/tailcuts.root", "middle");
+	TCutG* proton_left_mid_cut = l->loadCut("Histogrammer/cuts/tailcuts.root", "leftmid");
+	TCutG* proton_left_cut = l->loadCut("Histogrammer/cuts/tailcuts.root", "left");
+
+	TCutG* top_1 = l->loadCut("Histogrammer/cuts/tailcuts.root", "top");
+	TCutG* bottom_1 = l->loadCut("Histogrammer/cuts/tailcuts.root", "bottom");
+
 	c->setStandard1D(5000, 0, 5000);
 
 	c->add1DCut(c1, "alpha_c1");
@@ -55,6 +63,14 @@ TimeAnalyzer::TimeAnalyzer() {
 	c->add1DCut(bottomClock3sCut, "bottom3");
 	c->add1DCut(overflowCut, "overflow");
 	c->add1DCut(bottomClock3BigCut, "bottom3Big");
+
+	c->add1DCut(proton_right_cut, "tail_21"); // peak 21
+	c->add1DCut(proton_mid_cut, "tail_6"); // peak 6
+	c->add1DCut(proton_left_mid_cut, "tail_1"); // peak 1
+	c->add1DCut(proton_left_cut, "tail_y"); // y-aksen
+
+	c->add1DCut(top_1, "top_peak_1");
+	c->add1DCut(bottom_1, "bottom_peak_1");
 
 	// AL tids information
 	allClocks = new TH1F("allClocks", "Al data: Clockl i sek.", 5000, 0, 5000);

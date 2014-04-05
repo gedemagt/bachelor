@@ -22,23 +22,26 @@
 #include "Kolmogorow.h"
 
 void TimeAnalysis();
+void CumuTime();
 
 using namespace std;
 
 int _tmain(int argc, _TCHAR* argv[])
 {
 	TRint *theApp = new TRint("ROOT example", &argc, (char**)argv);
-	DataLoader* l = new DataLoader();
-	TChain* chain = l->loadData("mg21.dat", "h7");
+	//DataLoader* l = new DataLoader();
+	//TChain* chain = l->loadData("mg21.dat", "h7");
 	//Calib *c = new Calib(1);
 	//SiliciumAnalyzer* sa = new SiliciumAnalyzer(c);
 	//Selector *s = new Selector(new ProtonMg21Analyzer());
 	//chain->Process(s);
 	////delete s;
+	//Selector *s2 = new Selector(new GasAnalyzer());
 	//Selector *s2 = new Selector(new TimeAnalyzer());
 	//chain->Process(s2);
 
-	TimeAnalysis();
+	//TimeAnalysis();
+	CumuTime();
 	theApp->Run();
 	return 0;
 }

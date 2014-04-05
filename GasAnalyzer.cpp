@@ -6,10 +6,20 @@
 using namespace std;
 
 GasAnalyzer::GasAnalyzer() {
-
+	c = new Cuts(10);
 	DataLoader* l = new DataLoader();
 	midCut = l->loadCut("Histogrammer/cuts/midCut.root", "CUTG");
 	leftCut = l->loadCut("Histogrammer/cuts/leftCut.root", "CUTG");
+
+	proton_right_cut = l->loadCut("Histogrammer/cuts/tailcuts.root", "right");
+	proton_mid_cut = l->loadCut("Histogrammer/cuts/tailcuts.root", "middle");
+	proton_left_mid_cut = l->loadCut("Histogrammer/cuts/tailcuts.root", "leftmid");
+	proton_left_cut = l->loadCut("Histogrammer/cuts/tailcuts.root", "left");
+	
+	c->add1DCut(proton_right_cut, "tail_21", 300, 0, 1500); // peak 21
+	c->add1DCut(proton_mid_cut, "tail_6", 300, 0, 1500); // peak 6
+	c->add1DCut(proton_left_mid_cut, "tail_1", 500, 0, 2500); // peak 1
+	c->add1DCut(proton_left_cut, "tail_y", 500, 0, 2500); // y-aksen
 
 	peak1Gas = new TH1F("proton1gas","Proton peak1 i gas", 500, 0, 1000);
 	peak2Gas = new TH1F("proton2gas","Proton peak2 i gas", 500, 0, 1000);
@@ -27,6 +37,7 @@ void GasAnalyzer::analyze(Selector* s) {
 }
 
 void GasAnalyzer::fillHistograms(Short_t Egas, Short_t E1) {
+	c->fill1D(E1, Egas, Egas);
 	if (Egas < 1000 && Egas > 0){
 		if (E1 < 1287 && E1 > 1146) {
 			peak1Gas->Fill(Egas);

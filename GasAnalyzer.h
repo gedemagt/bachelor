@@ -3,6 +3,7 @@
 #include "TCutG.h"
 #include "TH1F.h"
 #include "TFile.h"
+#include "Cuts.h"
 
 class GasAnalyzer : public Analyzer {
 
@@ -31,4 +32,10 @@ private:
 	TCutG* midCut;
 	TCutG* leftCut;
 
+	TCutG* proton_right_cut;
+	TCutG* proton_mid_cut;
+	TCutG* proton_left_mid_cut;
+	TCutG* proton_left_cut;
+
+	Cuts* c;
 };

@@ -1,0 +1,150 @@
+-----------------------
+Testing peak1-time
+Using bin 0 to bin 1200
+Tested entries: 3551
+Testing type: Histogram
+D = 0.65346
+W2 = 0.119875
+A2 = 1.02099
+
+-----------------------
+-----------------------
+Testing peak2-time
+Using bin 0 to bin 1200
+Tested entries: 1283
+Testing type: Histogram
+D = 1.56301
+W2 = 0.677646
+A2 = 5.04052
+
+-----------------------
+-----------------------
+Testing peak3-time
+Using bin 0 to bin 1200
+Tested entries: 4166
+Testing type: Histogram
+D = 0.313671
+W2 = 0.0113467
+A2 = 0.0710032
+
+-----------------------
+-----------------------
+Testing peak4-time
+Using bin 0 to bin 1200
+Tested entries: 1402
+Testing type: Histogram
+D = 0.547701
+W2 = 0.0620937
+A2 = 0.315572
+
+-----------------------
+-----------------------
+Testing peak5-time
+Using bin 0 to bin 1200
+Tested entries: 10144
+Testing type: Histogram
+D = 0.327371
+W2 = 0.0214948
+A2 = 0.18903
+
+-----------------------
+-----------------------
+Testing peak6-time
+Using bin 0 to bin 1200
+Tested entries: 20009
+Testing type: Histogram
+D = 0.132167
+W2 = 0.00546816
+A2 = 0.0414553
+
+-----------------------
+-----------------------
+Testing peak7-time
+Using bin 0 to bin 1200
+Tested entries: 3357
+Testing type: Histogram
+D = 0.454174
+W2 = 0.0394456
+A2 = 0.232411
+
+-----------------------
+-----------------------
+Testing peak8-time
+Using bin 0 to bin 1200
+Tested entries: 1569
+Testing type: Histogram
+D = 0.588078
+W2 = 0.0584926
+A2 = 0.400229
+
+-----------------------
+-----------------------
+Testing peak18-time
+Using bin 0 to bin 1200
+Tested entries: 554
+Testing type: Histogram
+D = 0.777366
+W2 = 0.0882017
+A2 = 0.76179
+
+-----------------------
+-----------------------
+Testing peak19-time
+Using bin 0 to bin 1200
+Tested entries: 443
+Testing type: Histogram
+D = 1.03721
+W2 = 0.129158
+A2 = 1.51437
+
+-----------------------
+-----------------------
+Testing peak20-time
+Using bin 0 to bin 1200
+Tested entries: 770
+Testing type: Histogram
+D = 0.879172
+W2 = 0.186078
+A2 = 1.03658
+
+-----------------------
+-----------------------
+Testing peak21-time
+Using bin 0 to bin 1200
+Tested entries: 3480
+Testing type: Histogram
+D = 0.433808
+W2 = 0.0247498
+A2 = 0.135142
+
+-----------------------
+-----------------------
+Testing peakekstra1-time
+Using bin 0 to bin 1200
+Tested entries: 886
+Testing type: Histogram
+D = 1.07553
+W2 = 0.312782
+A2 = 1.43711
+
+-----------------------
+-----------------------
+Testing top_peak_1
+Using bin 0 to bin 1200
+Tested entries: 29
+Testing type: Histogram
+D = 6.14047
+W2 = 6.24999
+A2 = 41.686
+
+-----------------------
+-----------------------
+Testing bottom_peak_1
+Using bin 0 to bin 1200
+Tested entries: 2837
+Testing type: Histogram
+D = 0.365841
+W2 = 0.0216459
+A2 = 0.161782
+
+-----------------------

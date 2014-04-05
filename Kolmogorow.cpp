@@ -2,6 +2,7 @@
 #include <iostream>
 #include "TMath.h"
 #include "TRandom1.h"
+#include "Util.h"
 using namespace std;
 
 Double_t Kolmogorow::testVsFunction(TH1F* histo, Int_t lower_bin, Int_t upper_bin) {
@@ -16,7 +17,7 @@ Double_t Kolmogorow::testVsFunction(TH1F* histo, Int_t lower_bin, Int_t upper_bi
 	TRandom1* r = new TRandom1();
 	Int_t bins = histo->GetNbinsX();
 	Double_t n = histo->Integral(lower_bin, upper_bin);
-	TH1F* cum = getCumHisto(histo, lower_bin ,upper_bin);
+	TH1F* cum = util::getCumulatedHistogram(histo, lower_bin ,upper_bin, true);
 
 	// Initialize variables
 	W_f = A_f = D_f = 0.0;
@@ -73,8 +74,8 @@ Double_t Kolmogorow::testVsHistogram(TH1F* histo, Int_t lower_bin, Int_t upper_b
 	if (both) cout << endl;
 	cout << "Testing type: Histogram" << endl;
 
-	TH1F* EDF = getCumHisto(histo, lower_bin, upper_bin);
-	TH1F* F = getCumHisto(reference, lower_bin, upper_bin);
+	TH1F* EDF = util::getCumulatedHistogram(histo, lower_bin, upper_bin, true);
+	TH1F* F = util::getCumulatedHistogram(reference, lower_bin, upper_bin, true);
 
 	// Initialize variables
 	Double_t n = upper_bin;
@@ -136,22 +137,6 @@ Double_t Kolmogorow::testVsHistogram(TH1F* histo) {
 	return testVsHistogram(histo, 0, histo->GetNbinsX());
 }
 
-
-TH1F* Kolmogorow::getCumHisto(TH1F* histo, Int_t lower_bin, Int_t upper_bin) {
-	// The amounts of bins in the histogram
-	Double_t max = histo->GetXaxis()->GetBinUpEdge(upper_bin);
-	Double_t min = histo->GetXaxis()->GetBinUpEdge(lower_bin);
-	Double_t integral = histo->Integral(lower_bin, upper_bin);
-	TH1F* cum = new TH1F("", "", upper_bin - lower_bin, min, max);
-	Double_t cum_sum = 0.0;
-	for (int i = lower_bin; i < upper_bin; i++) {
-		Double_t content = histo->GetBinContent(i);
-		cum_sum += content;
-		cum->SetBinContent(i, cum_sum / integral);
-	}
-	return cum;
-}
-
 TGraph* Kolmogorow::setReferenceHistogram(TH1F* histo) {
 	// Variable holding the cumulative sum
 	Double_t cum_sum = 0.0;
@@ -181,7 +166,7 @@ TGraph* Kolmogorow::setReferenceHistogram(TH1F* histo) {
 		y_points[i] = cum_sum;
 	}
 	reference = histo;
-	reference_cum = getCumHisto(histo,0,histo->GetNbinsX());
+	reference_cum = util::getCumulatedHistogram(histo, 0, histo->GetNbinsX(), true);
 	reference_graph = new TGraph(bins, x_points, y_points);
 	return reference_graph;
 }
