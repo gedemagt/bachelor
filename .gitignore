@@ -4,6 +4,7 @@ Data/
 # Histogrammer
 Histogrammer/*.root
 Results/
+Logs/
 
 #Pictures
 *.pdf
