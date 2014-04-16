@@ -17,7 +17,7 @@ TimeAnalyzer::TimeAnalyzer() {
 	
 	// Load cuts
 	DataLoader* l = new DataLoader();
-	c = new Cuts(25);
+	c = new Cuts(30);
 
 	midCut = l->loadCut("Histogrammer/cuts/midCut.root", "CUTG");
 	bottomCut = l->loadCut("Histogrammer/cuts/bottomCut.root", "CUTG");
@@ -45,7 +45,17 @@ TimeAnalyzer::TimeAnalyzer() {
 	TCutG* top_1 = l->loadCut("Histogrammer/cuts/tailcuts.root", "top");
 	TCutG* bottom_1 = l->loadCut("Histogrammer/cuts/tailcuts.root", "bottom");
 
+	TCutG* extra_all = l->loadCut("Histogrammer/cuts/extra_cuts.root", "all_reduced");
+	TCutG* extra_inner = l->loadCut("Histogrammer/cuts/extra_cuts.root", "bot_inner");
+	TCutG* extra_mid = l->loadCut("Histogrammer/cuts/extra_cuts.root", "bot_mid");
+	TCutG* extra_out = l->loadCut("Histogrammer/cuts/extra_cuts.root", "bot_out");
+
 	c->setStandard1D(5000, 0, 5000);
+
+	c->add1DCut(extra_all, "extra_all");
+	c->add1DCut(extra_inner, "extra_inner");
+	c->add1DCut(extra_mid, "extra_mid");
+	c->add1DCut(extra_out, "extra_out");
 
 	c->add1DCut(c1, "alpha_c1");
 	c->add1DCut(c2, "alpha_c2");

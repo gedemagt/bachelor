@@ -97,6 +97,7 @@
     <ClInclude Include="Kolmogorow.h" />
     <ClInclude Include="Mg20GasAnalyzer.h" />
     <ClInclude Include="Mg20SiliciumAnalyzer.h" />
+    <ClInclude Include="MonteCarlo.h" />
     <ClInclude Include="ProtonMg21Analyzer.h" />
     <ClInclude Include="Selector.h" />
     <ClInclude Include="SiliciumAnalyzer.h" />
@@ -118,6 +119,8 @@
     <ClCompile Include="Kolmogorow.cpp" />
     <ClCompile Include="Mg20GasAnalyzer.cpp" />
     <ClCompile Include="Mg20SiliciumAnalyzer.cpp" />
+    <ClCompile Include="MonteCarlo.cpp" />
+    <ClCompile Include="MonteCarloSimulation.cpp" />
     <ClCompile Include="ProtonMg21Analyzer.cpp" />
     <ClCompile Include="Selector.cpp" />
     <ClCompile Include="is507.cpp" />

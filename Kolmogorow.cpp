@@ -105,8 +105,9 @@ Double_t Kolmogorow::testVsHistogram(TH1F* histo, Int_t lower_bin, Int_t upper_b
 
 	W_h *= n;
 	A_h *= n;
+	D_h = TMath::Max(d_plus, d_minus);
 
-	cout << "D = " << TMath::Max(d_plus, d_minus) << endl;
+	cout << "D = " << D_h << endl;
 	cout << "W2 = " << W_h << endl;
 	cout << "A2 = " << A_h << endl << endl;
 	if(!both) cout << "-----------------------" << endl;
