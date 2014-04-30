@@ -30,10 +30,10 @@ TimeAnalyzer::TimeAnalyzer() {
 	bottomClock3BigCut = l->loadCut("Histogrammer/cuts/protoncuts.root", "bigcut");
 	
 
-	TCutG* c1 = l->loadCut("Histogrammer/cuts/alphacuts.root", "Center1");
+	TCutG* c1 = l->loadCut("Histogrammer/cuts/alphacuts.root", "center1");
 	TCutG* c2 = l->loadCut("Histogrammer/cuts/alphacuts.root", "center2");
-	TCutG* c3 = l->loadCut("Histogrammer/cuts/alphacuts.root", "center3");
-	TCutG* c4 = l->loadCut("Histogrammer/cuts/alphacuts.root", "center4");
+	TCutG* c3 = l->loadCut("Histogrammer/cuts/alphacuts.root", "center33");
+	TCutG* c4 = l->loadCut("Histogrammer/cuts/alphacuts.root", "center44");
 	TCutG* ll = l->loadCut("Histogrammer/cuts/alphacuts.root", "left");
 	TCutG* between = l->loadCut("Histogrammer/cuts/alphacuts.root", "between");
 

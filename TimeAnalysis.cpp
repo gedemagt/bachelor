@@ -37,6 +37,7 @@ void TimeAnalysis() {
 	TH1F *protonpeak1bottom = l->load1DHistogram("Histogrammer/time.root", "bottom_peak_1");
 	
 	TGraph* g = k->setReferenceHistogram(referenceproton);
+	k->report(true);
 	
 	k->testVsHistogram(protonpeak1, 0, 1200);
 	k->testVsHistogram(protonpeak2, 0, 1200);

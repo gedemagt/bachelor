@@ -67,15 +67,27 @@ Double_t Kolmogorow::testVsFunction(TH1F* histo, Int_t lower_bin, Int_t upper_bi
 }
 
 Double_t Kolmogorow::testVsHistogram(TH1F* histo, Int_t lower_bin, Int_t upper_bin) {
-	cout << "-----------------------" << endl;
-	cout << "Testing " << histo->GetName() << endl;
-	cout << "Using bin " << lower_bin << " to bin " << upper_bin << endl;
-	cout << "Tested entries: " << histo->Integral(lower_bin, upper_bin) << endl;
-	if (both) cout << endl;
-	cout << "Testing type: Histogram" << endl;
+	if (_report) {
+		cout << "-----------------------" << endl;
+		cout << "Testing " << histo->GetName() << endl;
+		cout << "Reference " << reference->GetName() << endl;
+		cout << "Using bin " << lower_bin << " to bin " << upper_bin << endl;
+		cout << "Tested entries: " << histo->Integral(lower_bin, upper_bin) << endl;
+		if (both) cout << endl;
+		cout << "Testing type: Histogram" << endl;
+	}
 
 	TH1F* EDF = util::getCumulatedHistogram(histo, lower_bin, upper_bin, true);
-	TH1F* F = util::getCumulatedHistogram(reference, lower_bin, upper_bin, true);
+	//EDF->Draw();
+	if (lower_F != lower_bin || upper_F != upper_bin || new_reference){
+		
+		delete F;
+		F = util::getCumulatedHistogram(reference, lower_bin, upper_bin, true);
+		lower_F = lower_bin;
+		upper_F = upper_bin;
+		new_reference = false;
+	}
+	//F->Draw("same");
 
 	// Initialize variables
 	Double_t n = upper_bin;
@@ -100,17 +112,21 @@ Double_t Kolmogorow::testVsHistogram(TH1F* histo, Int_t lower_bin, Int_t upper_b
 
 	}
 
-	d_plus *= sqrt(n);
-	d_minus *= sqrt(n);
+	Double_t total = histo->Integral(lower_bin, upper_bin);
 
-	W_h *= n;
-	A_h *= n;
+	d_plus *= sqrt(total);
+	d_minus *= sqrt(total);
+
+	W_h *= total;
+	A_h *= total;
 	D_h = TMath::Max(d_plus, d_minus);
 
-	cout << "D = " << D_h << endl;
-	cout << "W2 = " << W_h << endl;
-	cout << "A2 = " << A_h << endl << endl;
-	if(!both) cout << "-----------------------" << endl;
+	if (_report) {
+		cout << "D = " << D_h << endl;
+		cout << "W2 = " << W_h << endl;
+		cout << "A2 = " << A_h << endl << endl;
+		if (!both) cout << "-----------------------" << endl;
+	}
 	return 0;
 }
 
@@ -169,5 +185,10 @@ TGraph* Kolmogorow::setReferenceHistogram(TH1F* histo) {
 	reference = histo;
 	reference_cum = util::getCumulatedHistogram(histo, 0, histo->GetNbinsX(), true);
 	reference_graph = new TGraph(bins, x_points, y_points);
+	new_reference = true;
 	return reference_graph;
+}
+
+void Kolmogorow::report(Bool_t should_report) {
+	_report = should_report;
 }

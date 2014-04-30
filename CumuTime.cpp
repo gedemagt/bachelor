@@ -21,6 +21,7 @@ void CumuTime() {
 	
 	// Time analysis
 	Kolmogorow* k = new Kolmogorow();
+	k->report(true);
 
 	Int_t max = 1200;
 	TH1F* c1_cum = util::getCumulatedHistogram(c1, 0, max, true);
@@ -81,12 +82,18 @@ void CumuTime() {
 
 	TH1F* c1_squared = util::getSquaredHistogram(c1, 0, 5000, false, false);
 	TH1F* proton = l->load1DHistogram("Histogrammer/time.root","bottom3");
+	TH1F* between = l->load1DHistogram("Histogrammer/time.root", "alpha_between");
+	TH1F* left = l->load1DHistogram("Histogrammer/time.root", "alpha_left");
+	TH1F* topright = l->load1DHistogram("Histogrammer/time.root", "topRight");
+	TH1F* betas = l->load1DHistogram("Histogrammer/time.root", "extra_inner");
 	TH1F* proton_squared = util::getSquaredHistogram(proton, 0, 5000, false, false);
-	//f.WriteTObject(c1_squared);
-	//c1->Draw();
-	//c1_squared->SetLineColor(3);
-	//c1_squared->Draw();
-	//c1->Draw();
+	proton_squared->SetName("proton_squared");
+	c1_squared->SetName("c1_squared");
+	f.WriteTObject(c1_squared);
+	c1->Draw();
+	c1_squared->SetLineColor(3);
+	c1_squared->Draw();
+	c1->Draw();
 	cout << "-------------Rene c1-------------" << endl;
 	k->setReferenceHistogram(c1);
 	k->testVsHistogram(c2, 0, 1200);
@@ -103,6 +110,10 @@ void CumuTime() {
 	k->testVsHistogram(c2, 0, 1200);
 	k->testVsHistogram(c3, 0, 1200);
 	k->testVsHistogram(c4, 0, 1200);
+	k->testVsHistogram(between, 0, 1200);
+	k->testVsHistogram(left, 0, 1200);
+	k->testVsHistogram(topright, 0, 1200);
+	k->testVsHistogram(betas, 0, 1200);
 	cout << "-------------Rene proton_squared-------------" << endl;
 	k->setReferenceHistogram(proton_squared);
 	k->testVsHistogram(c1, 0, 1200);

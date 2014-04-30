@@ -23,7 +23,7 @@
 
 void TimeAnalysis();
 void CumuTime();
-void MonteCarloSimulation();
+void MonteCarloSimulation(Int_t c, Int_t r);
 
 using namespace std;
 
@@ -42,8 +42,8 @@ int _tmain(int argc, _TCHAR* argv[])
 	//chain->Process(s2);
 
 	//TimeAnalysis();
-	//CumuTime();
-	MonteCarloSimulation();
+	CumuTime();
+	//MonteCarloSimulation(28,1);
 	theApp->Run();
 	return 0;
 }
