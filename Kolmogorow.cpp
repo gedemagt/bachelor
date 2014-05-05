@@ -94,13 +94,16 @@ Double_t Kolmogorow::testVsHistogram(TH1F* histo, Int_t lower_bin, Int_t upper_b
 	Double_t d_plus = 0.0, d_minus = 0.0;
 	Double_t EDF_i = 0.0, F_i = 0.0, diff1 = 0.0, diff2 = 0.0, p_i = 0.0;
 	W_h = A_h = D_h = 0.0;
+	Int_t bin = 0;
 
 	for (Int_t i = lower_bin; i < n; i++) {
 		EDF_i = EDF->GetBinContent(i);
 		F_i = F->GetBinContent(i);
 		diff1 = F_i - EDF_i;
 		diff2 = EDF_i - F_i;
-		if (diff1 > d_plus) d_plus = diff1;
+		if (diff1 > d_plus) {
+			d_plus = diff1; bin = i;
+		}
 		if (diff2 > d_minus) d_minus = diff2;
 
 		p_i = reference->GetBinContent(i) / reference->Integral(lower_bin, upper_bin);
@@ -109,7 +112,6 @@ Double_t Kolmogorow::testVsHistogram(TH1F* histo, Int_t lower_bin, Int_t upper_b
 		if ((F_i*(1 - F_i)) != 0.0) {
 			A_h += pow(EDF_i - F_i, 2)*p_i / (F_i*(1 - F_i));
 		}
-
 	}
 
 	Double_t total = histo->Integral(lower_bin, upper_bin);

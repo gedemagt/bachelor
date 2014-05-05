@@ -86,6 +86,8 @@ void CumuTime() {
 	TH1F* left = l->load1DHistogram("Histogrammer/time.root", "alpha_left");
 	TH1F* topright = l->load1DHistogram("Histogrammer/time.root", "topRight");
 	TH1F* betas = l->load1DHistogram("Histogrammer/time.root", "extra_inner");
+	TH1F* betas_left = l->load1DHistogram("Histogrammer/time.root", "beta_left");
+	TH1F* betas_right = l->load1DHistogram("Histogrammer/time.root", "beta_right");
 	TH1F* proton_squared = util::getSquaredHistogram(proton, 0, 5000, false, false);
 	proton_squared->SetName("proton_squared");
 	c1_squared->SetName("c1_squared");
@@ -114,22 +116,24 @@ void CumuTime() {
 	k->testVsHistogram(left, 0, 1200);
 	k->testVsHistogram(topright, 0, 1200);
 	k->testVsHistogram(betas, 0, 1200);
+	k->testVsHistogram(betas_left, 0, 1200);
+	k->testVsHistogram(betas_right, 0, 1200);
 	cout << "-------------Rene proton_squared-------------" << endl;
 	k->setReferenceHistogram(proton_squared);
 	k->testVsHistogram(c1, 0, 1200);
 	k->testVsHistogram(c2, 0, 1200);
 	k->testVsHistogram(c3, 0, 1200);
 	k->testVsHistogram(c4, 0, 1200);
-	//cout << "-------------Kumulerede c1-------------" << endl;
-	//k->setReferenceHistogram(c1_cum);
-	//k->testVsHistogram(c2_cum, 0, 1200);
-	//k->testVsHistogram(c3_cum, 0, 1200);
-	//k->testVsHistogram(c4_cum, 0, 1200);
-	//cout << "-------------Kumulerede c1_cumuleret_squared-------------" << endl;
-	//k->setReferenceHistogram(c1_cum_squared);
-	//k->testVsHistogram(c2_cum, 0, 1200);
-	//k->testVsHistogram(c3_cum, 0, 1200);
-	//k->testVsHistogram(c4_cum, 0, 1200);
+	cout << "-------------Kumulerede c1-------------" << endl;
+	k->setReferenceHistogram(c1_cum);
+	k->testVsHistogram(c2_cum, 0, 1200);
+	k->testVsHistogram(c3_cum, 0, 1200);
+	k->testVsHistogram(c4_cum, 0, 1200);
+	cout << "-------------Kumulerede c1_cumuleret_squared-------------" << endl;
+	k->setReferenceHistogram(c1_cum_squared);
+	k->testVsHistogram(c2_cum, 0, 1200);
+	k->testVsHistogram(c3_cum, 0, 1200);
+	k->testVsHistogram(c4_cum, 0, 1200);
 
 	fclose(stdout);
 }

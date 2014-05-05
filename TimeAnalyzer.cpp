@@ -50,6 +50,9 @@ TimeAnalyzer::TimeAnalyzer() {
 	TCutG* extra_mid = l->loadCut("Histogrammer/cuts/extra_cuts.root", "bot_mid");
 	TCutG* extra_out = l->loadCut("Histogrammer/cuts/extra_cuts.root", "bot_out");
 
+	TCutG* beta_left = l->loadCut("Histogrammer/cuts/betabeta.root", "beta_left");
+	TCutG* beta_right = l->loadCut("Histogrammer/cuts/betabeta.root", "beta_right");
+
 	c->setStandard1D(5000, 0, 5000);
 
 	c->add1DCut(extra_all, "extra_all");
@@ -81,6 +84,9 @@ TimeAnalyzer::TimeAnalyzer() {
 
 	c->add1DCut(top_1, "top_peak_1");
 	c->add1DCut(bottom_1, "bottom_peak_1");
+
+	c->add1DCut(beta_left, "beta_left");
+	c->add1DCut(beta_right, "beta_right");
 
 	// AL tids information
 	allClocks = new TH1F("allClocks", "Al data: Clockl i sek.", 5000, 0, 5000);
