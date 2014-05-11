@@ -17,7 +17,6 @@ public:
 	virtual ~ProtonMg21Analyzer() {};
 	void analyze(Selector* s);
 	void terminate();
-	const char* getDestination();
 private:
 	Int_t clockllast = 0, Nt1last = 0, clocks, clockl;
 	Int_t n;
@@ -31,5 +30,4 @@ private:
 	TH1F* peakHistograms;
 	TH1F* timeHistograms;
 	cut* cuts;
-	const char* dest;
 };

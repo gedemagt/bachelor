@@ -12,7 +12,6 @@ public:
 	virtual ~TimeAnalyzer() {};
 	void analyze(Selector* s);
 	void terminate();
-	const char* getDestination();
 	void setCuts(Cuts* cuts);
 
 private:
@@ -22,7 +21,5 @@ private:
 	Short_t e1;
 
 	Cuts* c;
-
-	const char* dest;
 
 };

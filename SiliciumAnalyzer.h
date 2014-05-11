@@ -20,7 +20,6 @@ private:
 	Short_t e1;
 
 	Calib* ca;
-	const char* dest;
 
 	TCutG* midCut;
 	TCutG* leftCut;

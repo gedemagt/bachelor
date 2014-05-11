@@ -6,8 +6,7 @@
 #include <iostream>
 using namespace std;
 
-GasAnalyzer::GasAnalyzer(const char* dest) {
-	this->dest = dest;
+GasAnalyzer::GasAnalyzer(const char* dest) : Analyzer(dest) {
 	c = new Cuts(10);
 	DataLoader* l = new DataLoader();
 	midCut = l->loadCut("Histogrammer/cuts/midCut.root", "CUTG");
@@ -56,10 +55,6 @@ void GasAnalyzer::fillHistograms(Short_t Egas, Short_t E1) {
 	if (leftCut->IsInside(E1, Egas)) {
 		alfa2Gas->Fill(Egas);
 	}
-}
-
-const char* GasAnalyzer::getDestination() {
-	return dest;
 }
 
 void GasAnalyzer::terminate() {

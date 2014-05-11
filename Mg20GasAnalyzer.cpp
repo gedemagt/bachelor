@@ -4,9 +4,7 @@
 #include <iostream>
 using namespace std;
 
-Mg20GasAnalyzer::Mg20GasAnalyzer(const char* dest) {
-
-	this->dest = dest;
+Mg20GasAnalyzer::Mg20GasAnalyzer(const char* dest) : Analyzer(dest) {
 
 	peak1 = new TH1F("peak1", "Egas", 500, 1000, 2000);
 	peak2 = new TH1F("peak2", "Egas", 400, 490, 1700);
@@ -27,10 +25,6 @@ void Mg20GasAnalyzer::fillHistograms(Short_t Egas, Short_t E1) {
 	if (Egas > 540 && E1 > 2850 && E1 < 3165) {
 		peak2->Fill(Egas);
 	}
-}
-
-const char* Mg20GasAnalyzer::getDestination() {
-	return dest;
 }
 
 void Mg20GasAnalyzer::terminate() {

@@ -6,8 +6,7 @@
 #include <iostream>
 using namespace std;
 
-BananaAnalyzer::BananaAnalyzer(const char* dest) {
-	this->dest = dest;
+BananaAnalyzer::BananaAnalyzer(const char* dest) : Analyzer(dest) {
 	// Load cuts
 	DataLoader* l = new DataLoader();
 	midCut = l->loadCut("Histogrammer/cuts/midCut.root", "CUTG");
@@ -54,10 +53,6 @@ void BananaAnalyzer::fillHistograms(Short_t Egas, Short_t E1) {
 		topRightData->Fill(E1, Egas);
 	}
 
-}
-
-const char* BananaAnalyzer::getDestination() {
-	return dest;
 }
 
 void BananaAnalyzer::terminate() {

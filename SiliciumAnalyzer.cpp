@@ -6,8 +6,7 @@
 #include "Calibration.h"
 using namespace std;
 
-SiliciumAnalyzer::SiliciumAnalyzer(Calib *c, const char* dest) {
-	this->dest = dest;
+SiliciumAnalyzer::SiliciumAnalyzer(Calib *c, const char* dest) : Analyzer(dest) {
 	ca = c;
 
 	// Load cuts
@@ -57,7 +56,7 @@ void SiliciumAnalyzer::fillHistograms(Short_t Egas_ch, Short_t E1_ch, Short_t Eg
 }
 
 const char* SiliciumAnalyzer::getDestination() {
-	TString *t = new TString(dest);
+	TString *t = new TString(Analyzer::getDestination());
 	t->Append(" - ");
 	t->Append(ca->getCalibration());
 	return t->Data();

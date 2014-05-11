@@ -109,4 +109,25 @@ void analyseSi1Si2Proton() {
 	fclose(stdout);
 }
 
+void analyzeDSSD() {
+	freopen("Results/dssd.txt", "w", stdout);
+	DataLoader* l = new DataLoader();
+	Kolmogorow *k = new Kolmogorow();
+	TH1F* proton = l->load1DHistogram("Histogrammer/New/time.root", "bottom3");
+	TH1F* time_24 = l->load1DHistogram("Histogrammer/New/dssd.root", "time_24");
+	TH1F* time_33 = l->load1DHistogram("Histogrammer/New/dssd.root", "time_33");
+	TH1F* time_38 = l->load1DHistogram("Histogrammer/New/dssd.root", "time_38");
+	TH1F* time_46 = l->load1DHistogram("Histogrammer/New/dssd.root", "time_46");
+	TH1F* time_62 = l->load1DHistogram("Histogrammer/New/dssd.root", "time_62");
+
+	k->setReferenceHistogram(proton);
+	k->report(true);
+	k->testVsHistogram(time_24, 0, 1200);
+	k->testVsHistogram(time_33, 0, 1200);
+	k->testVsHistogram(time_38, 0, 1200);
+	k->testVsHistogram(time_46, 0, 1200);
+	k->testVsHistogram(time_62, 0, 1200);
+	fclose(stdout);
+}
+
 #endif

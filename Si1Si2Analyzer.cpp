@@ -4,12 +4,13 @@
 #include "Selector.h"
 #include <iostream>
 #include "Calibration.h"
-#include "Macros.h"
+//#include "Macros.h"
 using namespace std;
 
-Si1Si2Analyzer::Si1Si2Analyzer(const char* dest) {
-	this->dest = dest;
+Si1Si2Analyzer::Si1Si2Analyzer(const char* dest) : Analyzer(dest) {
 	Mg_Calib.LoadCalib();
+
+	calc = new TimeCalc();
 
 	allData = new TH2F("all", "E1 vs. E2 ", 900, 0, 4500, 900, 0, 4500);
 	cutted = new TH2F("cutted", "E1 vs. E2 -cutted ", 900, 0, 4500, 900, 0, 4500);
@@ -25,23 +26,17 @@ Si1Si2Analyzer::Si1Si2Analyzer(const char* dest) {
 }
 
 void Si1Si2Analyzer::fillTimeHistogram(Selector*s, TH1F* histo) {
-	if (s->Clockl > clockllast){
-		histo->Fill(clocks);
-	}
+	//if (s->Clockl > clockllast){
+	//	histo->Fill(clocks);
+	//}
 }
 
 void Si1Si2Analyzer::analyze(Selector* s) {
-	clockl = s->Clockl;
-	// Calculte clock stuff
-	clocks = 0;
-	if (s->Clockl > clockllast){
-		clocks = s->Clockl - clockllast;
-		if (s->Nt1 > Nt1last){
-			clockllast = s->Clockl;
-			Nt1last = s->Nt1;
-		}
-	}
+	// Calculate time stuff
+	calc->calculateNewEvent(s);
+	// Calculate calibration
 	Mg_Calib.Calibrate(s->Epad, s->E1, s->Ef, s->Nsfe, s->Nfe, s->Eb, s->Nsbe, s->Nbe);
+	
 	allData->Fill(s->E1, s->E2);
 
 	if (Mg_Calib.E1_calib > (s->E2*(3000. - 5700.) / (1250.) + 5700.)){
@@ -50,20 +45,14 @@ void Si1Si2Analyzer::analyze(Selector* s) {
 			cutted->Fill(s->E1, s->E2);
 			silicium1->Fill(s->E1);
 			silicium2->Fill(s->E2);
-			fillTimeHistogram(s, time);
+			calc->fillHistogram(time);
 
 			// Cut it in two
-			if (s->E2 < 700) fillTimeHistogram(s, time_s2_left);
-			else fillTimeHistogram(s, time_s2_right);
+			if (s->E2 < 700) calc->fillHistogram(time_s2_left);
+			else calc->fillHistogram(time_s2_right);
 		}
 	}
 
-}
-
-
-const char* Si1Si2Analyzer::getDestination() {
-	TString *t = new TString(dest);
-	return t->Data();
 }
 
 void Si1Si2Analyzer::terminate() {
@@ -79,6 +68,6 @@ void Si1Si2Analyzer::terminate() {
 	f->WriteTObject(time_s2_right);
 
 	f->Close();
-	analyseSi1Si2Proton();
+	//analyseSi1Si2Proton();
 }
 

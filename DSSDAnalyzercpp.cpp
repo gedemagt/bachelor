@@ -1,14 +1,23 @@
 #include "DSSDAnalyzer.h"
+#include "Macros.h"
 
-DSSDAnalyzer::DSSDAnalyzer(const char* dest) {
+DSSDAnalyzer::DSSDAnalyzer(const char* dest) : Analyzer(dest){
 	Mg_Calib.LoadCalib();
-	this->dest;
 	front_calib = new TH1F("back_calib", "E_{back} - Calib", 1750, 0, 7000);
 	back_calib = new TH1F("front_calib", "E_{back} - Calib", 1750, 0, 7000);
 	paired_21mg = new TH1F("paired_21mg", "Ef and Eb matched", 1750, 0, 7000);
+
+	time_24 = new TH1F("time_24", "2.4 keV", 5000, 0, 5000);
+	time_33 = new TH1F("time_33", "3.3 keV", 5000, 0, 5000);
+	time_38 = new TH1F("time_38", "3.8 keV", 5000, 0, 5000);
+	time_46 = new TH1F("time_46", "4.6 keV", 5000, 0, 5000);
+	time_62 = new TH1F("time_62", "6.2 keV", 5000, 0, 5000);
+
+	calc = new TimeCalc();
 }
 
 void DSSDAnalyzer::analyze(Selector* s) {
+	calc->calculateNewEvent(s);
 	Mg_Calib.Calibrate(s->Epad, s->E1, s->Ef, s->Nsfe, s->Nfe, s->Eb, s->Nsbe, s->Nbe);
 	for (Int_t i = 0; i<s->Nfe; i++){
 		front_calib->Fill(Mg_Calib.Efront[i]);
@@ -27,16 +36,28 @@ void DSSDAnalyzer::analyze(Selector* s) {
 			paired_21mg->Fill(paired_value);
 
 			//tidsfordelinger
+			if (paired_value > 6000 && paired_value < 6500) {
+				calc->fillHistogram(time_62);
+			}
+			if (paired_value > 4500 && paired_value < 5000) {
+				calc->fillHistogram(time_46);
+			}
+			if (paired_value > 3700 && paired_value < 4100) {
+				calc->fillHistogram(time_38);
+			}
+			if (paired_value > 3100 && paired_value < 3500) {
+				calc->fillHistogram(time_33);
+			}
+			if (paired_value > 2300 && paired_value < 2600) {
+				calc->fillHistogram(time_24);
+			}
+
+
 			//diverse cuts
 
 		}
 	}
 
-}
-
-const char* DSSDAnalyzer::getDestination() {
-	TString *t = new TString(dest);
-	return t->Data();
 }
 
 void DSSDAnalyzer::terminate() {
@@ -47,5 +68,12 @@ void DSSDAnalyzer::terminate() {
 	f->WriteTObject(back_calib);
 	f->WriteTObject(paired_21mg);
 
+	f->WriteTObject(time_24);
+	f->WriteTObject(time_33);
+	f->WriteTObject(time_38);
+	f->WriteTObject(time_46);
+	f->WriteTObject(time_62);
+
 	f->Close();
+	analyzeDSSD();
 }

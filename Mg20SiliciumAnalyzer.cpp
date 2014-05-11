@@ -4,8 +4,7 @@
 #include <iostream>
 using namespace std;
 
-Mg20SiliciumAnalyzer::Mg20SiliciumAnalyzer(const char* dest) {
-	this->dest = dest;
+Mg20SiliciumAnalyzer::Mg20SiliciumAnalyzer(const char* dest) : Analyzer(dest){
 	peak1 = new TH1F("peak1", "Silicium - 20mg", 500, 1000, 1500);
 	peak2 = new TH1F("peak2", "Silicium - 20mg", 250, 2900, 3155);
 }
@@ -23,10 +22,6 @@ void Mg20SiliciumAnalyzer::fillHistograms(Short_t Egas, Short_t E1) {
 	if (Egas > 540 && E1 > 2850 && E1 < 3165) {
 		peak2->Fill(E1);
 	}
-}
-
-const char* Mg20SiliciumAnalyzer::getDestination() {
-	return dest;
 }
 
 void Mg20SiliciumAnalyzer::terminate() {

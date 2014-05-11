@@ -105,6 +105,9 @@
     <ClInclude Include="DSSDAnalyzer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="TimeCalc.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -167,14 +170,8 @@
     <ClCompile Include="Cuts.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Util.cpp">
-      <Filter>Header Files</Filter>
-    </ClCompile>
     <ClCompile Include="CumuTime.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="MonteCarlo.cpp">
-      <Filter>Header Files</Filter>
     </ClCompile>
     <ClCompile Include="MonteCarloSimulation.cpp">
       <Filter>Source Files</Filter>
@@ -183,6 +180,15 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="DSSDAnalyzercpp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Util.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MonteCarlo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TimeCalc.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

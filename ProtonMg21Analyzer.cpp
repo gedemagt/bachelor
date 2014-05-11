@@ -2,8 +2,7 @@
 #include "DataLoader.h"
 #include "Selector.h"
 
-ProtonMg21Analyzer::ProtonMg21Analyzer(const char* dest) {
-	this->dest = dest;
+ProtonMg21Analyzer::ProtonMg21Analyzer(const char* dest) : Analyzer(dest) {
 	// Load cut
 	DataLoader* l = new DataLoader();
 	bottomCut2 = l->loadCut("Histogrammer/cuts/bottomCut2.root", "CUTG");
@@ -108,10 +107,6 @@ void ProtonMg21Analyzer::analyze(Selector* s) {
 			};
 		};
 	}
-}
-
-const char* ProtonMg21Analyzer::getDestination() {
-	return dest;
 }
 
 void ProtonMg21Analyzer::terminate() {

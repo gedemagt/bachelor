@@ -8,10 +8,8 @@
 #include <iostream>
 using namespace std;
 
-TimeAnalyzer::TimeAnalyzer(const char* destination) {
+TimeAnalyzer::TimeAnalyzer(const char* destination) : Analyzer(destination) {
 	
-	this->dest = destination;
-
 }
 
 void TimeAnalyzer::analyze(Selector* s) {
@@ -32,10 +30,6 @@ void TimeAnalyzer::analyze(Selector* s) {
 
 void TimeAnalyzer::setCuts(Cuts* cuts) {
 	c = cuts;
-}
-
-const char* TimeAnalyzer::getDestination() {
-	return dest;
 }
 
 void TimeAnalyzer::terminate() {
