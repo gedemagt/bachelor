@@ -6,8 +6,8 @@
 #include <iostream>
 using namespace std;
 
-BananaAnalyzer::BananaAnalyzer() {
-
+BananaAnalyzer::BananaAnalyzer(const char* dest) {
+	this->dest = dest;
 	// Load cuts
 	DataLoader* l = new DataLoader();
 	midCut = l->loadCut("Histogrammer/cuts/midCut.root", "CUTG");
@@ -57,9 +57,19 @@ void BananaAnalyzer::fillHistograms(Short_t Egas, Short_t E1) {
 }
 
 const char* BananaAnalyzer::getDestination() {
-	return "banana";
+	return dest;
 }
 
 void BananaAnalyzer::terminate() {
+	TString rootFile = "Histogrammer/" + TString(getDestination()) + ".root";
+	TFile* f = new TFile(rootFile, "recreate");
+	f->WriteTObject(allData);
+	f->WriteTObject(midData);
+	f->WriteTObject(bottomData);
+	f->WriteTObject(bottomData2);
+	f->WriteTObject(bottomLeftData);
+	f->WriteTObject(leftData);
+	f->WriteTObject(topRightData);
+	f->Close();
 }
 

@@ -6,8 +6,8 @@
 #include "Calibration.h"
 using namespace std;
 
-SiliciumAnalyzer::SiliciumAnalyzer(Calib *c) {
-
+SiliciumAnalyzer::SiliciumAnalyzer(Calib *c, const char* dest) {
+	this->dest = dest;
 	ca = c;
 
 	// Load cuts
@@ -57,11 +57,23 @@ void SiliciumAnalyzer::fillHistograms(Short_t Egas_ch, Short_t E1_ch, Short_t Eg
 }
 
 const char* SiliciumAnalyzer::getDestination() {
-	TString *t = new TString("Silicium - ");
+	TString *t = new TString(dest);
+	t->Append(" - ");
 	t->Append(ca->getCalibration());
 	return t->Data();
 }
 
 void SiliciumAnalyzer::terminate() {
+	TString rootFile = "Histogrammer/" + TString(getDestination()) + ".root";
+	TFile* f = new TFile(rootFile, "recreate");
+	
+	f->WriteTObject(allData);
+	f->WriteTObject(midData);
+	f->WriteTObject(bottomData2);
+	f->WriteTObject(bottomLeftData);
+	f->WriteTObject(leftData);
+	f->WriteTObject(topRightData);
+	
+	f->Close();
 }
 

@@ -8,7 +8,7 @@
 class SiliciumAnalyzer : public Analyzer {
 
 public:
-	SiliciumAnalyzer(Calib* ca);
+	SiliciumAnalyzer(Calib* ca, const char* dest);
 	virtual ~SiliciumAnalyzer() {};
 	void analyze(Selector* s);
 	void terminate();
@@ -20,6 +20,7 @@ private:
 	Short_t e1;
 
 	Calib* ca;
+	const char* dest;
 
 	TCutG* midCut;
 	TCutG* leftCut;

@@ -7,7 +7,7 @@
 class BananaAnalyzer : public Analyzer {
 
 public:
-	BananaAnalyzer();
+	BananaAnalyzer(const char* dest);
 	virtual ~BananaAnalyzer() {};
 	void analyze(Selector* s);
 	void terminate();
@@ -16,7 +16,7 @@ public:
 private:
 
 	void fillHistograms(Short_t Egas, Short_t E1);
-
+	const char* dest;
 	TCutG* midCut;
 	TCutG* leftCut;
 	TCutG* topRightCut;

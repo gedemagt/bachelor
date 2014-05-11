@@ -95,9 +95,9 @@ void Selector::SlaveTerminate()
 void Selector::Terminate()
 {
 	a->terminate();
-	TString rootFile = "Histogrammer/" +TString(a->getDestination()) + ".root";
-	TFile f(rootFile, "recreate");
-	fOutput->Write();
+	//TString rootFile = "Histogrammer/" +TString(a->getDestination()) + ".root";
+	//TFile f(rootFile, "recreate");
+	//fOutput->Write();
 	cout << endl;
 	cout << "Terminated" << endl;
    // The Terminate() function is the last function to be called during

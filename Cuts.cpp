@@ -6,7 +6,7 @@ using namespace std;
 Cuts::Cuts(Int_t dimension) {
 	dim = dimension;
 
-	cut_1 = new TCutG*[dimension];
+	cut_1 = new Cut*[dimension];
 	cut_2[dimension];
 
 	histo_1 = new TH1F*[dimension];
@@ -35,7 +35,7 @@ Cuts::~Cuts() {
 	delete[] histo_2;
 }
 
-void Cuts::add1DCut(TCutG* tcut, const char* name, Int_t nbinsx, Double_t xlow, Double_t xup){
+void Cuts::add1DCut(Cut* tcut, const char* name, Int_t nbinsx, Double_t xlow, Double_t xup){
 	if (current_1 < dim) {
 		cut_1[current_1] = tcut;
 		TH1F* histo = new TH1F(name, name, nbinsx, xlow, xup);
@@ -44,7 +44,7 @@ void Cuts::add1DCut(TCutG* tcut, const char* name, Int_t nbinsx, Double_t xlow, 
 	}
 }
 
-void Cuts::add1DCut(TCutG* tcut, const char* name){
+void Cuts::add1DCut(Cut* tcut, const char* name){
 	if (current_1 < dim) {
 		cut_1[current_1] = tcut;
 		TH1F* histo = new TH1F(name, name, nBinsx_std_1, xlow_std_1, xup_std_1);
@@ -53,7 +53,7 @@ void Cuts::add1DCut(TCutG* tcut, const char* name){
 	}
 }
 
-void Cuts::add2DCut(TCutG* tcut, const char* name){
+void Cuts::add2DCut(Cut* tcut, const char* name){
 	if (current_2 < dim) {
 		cut_2[current_2] = tcut;
 		TH2F* histo = new TH2F(name, name, nBinsx_std_2, xlow_std_2, xup_std_2, nBinsy_std_2, ylow_std_2, yup_std_2);
@@ -62,7 +62,7 @@ void Cuts::add2DCut(TCutG* tcut, const char* name){
 	}
 }
 
-void Cuts::add2DCut(TCutG* tcut, const char* name, Int_t nbinsx, Double_t xlow, Double_t xup, Int_t nbinsy, Double_t ylow, Double_t yup){
+void Cuts::add2DCut(Cut* tcut, const char* name, Int_t nbinsx, Double_t xlow, Double_t xup, Int_t nbinsy, Double_t ylow, Double_t yup){
 	if (current_2 < dim) {
 		cut_2[current_2] = tcut;
 		TH2F* histo = new TH2F(name, name,nbinsx, xlow, xup, nbinsy, ylow, yup);
@@ -90,9 +90,22 @@ void Cuts::setStandard2D(Int_t nbinsx, Double_t xlow, Double_t xup, Int_t nbinsy
 void Cuts::fill1D(Double_t constraint_x, Double_t constraint_y, Double_t x) {
 	for (Int_t i = 0; i < current_1; i++) {
 		if (cut_1[i]->IsInside(constraint_x, constraint_y)) {
+			//cout << constraint_x << " " << constraint_y << " "<< histo_1[i]->GetName() << endl;
 			histo_1[i]->Fill(x);
 		}
 	}
+}
+
+void Cuts::writeToFile(TFile *f) {
+	if (current_1 == 0) return;
+	for (Int_t i = 0; i < current_1; i++) {
+		f->WriteTObject(histo_1[i]);
+	}
+	if (current_2 == 0) return;
+	for (Int_t i = 0; i <= current_2; i++) {
+		f->WriteTObject(histo_2[i]);
+	}
+	
 }
 
 void Cuts::fill2D(Double_t constraint_x, Double_t constraint_y, Double_t x, Double_t y) {

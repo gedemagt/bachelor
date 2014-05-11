@@ -6,7 +6,7 @@
 class Mg20SiliciumAnalyzer : public Analyzer {
 
 public:
-	Mg20SiliciumAnalyzer();
+	Mg20SiliciumAnalyzer(const char* dest);
 	virtual ~Mg20SiliciumAnalyzer() {};
 	void analyze(Selector* s);
 	void terminate();
@@ -14,7 +14,7 @@ public:
 
 private:
 	void fillHistograms(Short_t Egas, Short_t E1);
-
+	const char* dest;
 	Short_t e1;
 	Short_t Egas;
 

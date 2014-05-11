@@ -4,92 +4,13 @@
 #include "Selector.h"
 #include "TString.h"
 #include "Cuts.h"
+#include "RootTCut.h"
 #include <iostream>
 using namespace std;
 
-struct cut {
-	TCutG* tcut;
-	char* name;
-	TH1F* histo;
-};
-
-TimeAnalyzer::TimeAnalyzer() {
+TimeAnalyzer::TimeAnalyzer(const char* destination) {
 	
-	// Load cuts
-	DataLoader* l = new DataLoader();
-	c = new Cuts(30);
-
-	midCut = l->loadCut("Histogrammer/cuts/midCut.root", "CUTG");
-	bottomCut = l->loadCut("Histogrammer/cuts/bottomCut.root", "CUTG");
-	bottomCut2 = l->loadCut("Histogrammer/cuts/bottomCut2.root", "CUTG");
-	bottomLeftCut = l->loadCut("Histogrammer/cuts/bottomLeftCut.root", "CUTG");
-	leftCut = l->loadCut("Histogrammer/cuts/lotofcuts.root", "left");
-	topRightCut = l->loadCut("Histogrammer/cuts/topRightCut.root", "CUTG");
-	bottomClock3sCut = l->loadCut("Histogrammer/cuts/lotofcuts.root","bottom1");
-	overflowCut = l->loadCut("Histogrammer/cuts/lotofcuts.root", "overflow");
-	bottomClock3BigCut = l->loadCut("Histogrammer/cuts/protoncuts.root", "bigcut");
-	
-
-	TCutG* c1 = l->loadCut("Histogrammer/cuts/alphacuts.root", "center1");
-	TCutG* c2 = l->loadCut("Histogrammer/cuts/alphacuts.root", "center2");
-	TCutG* c3 = l->loadCut("Histogrammer/cuts/alphacuts.root", "center33");
-	TCutG* c4 = l->loadCut("Histogrammer/cuts/alphacuts.root", "center44");
-	TCutG* ll = l->loadCut("Histogrammer/cuts/alphacuts.root", "left");
-	TCutG* between = l->loadCut("Histogrammer/cuts/alphacuts.root", "between");
-
-	TCutG* proton_right_cut = l->loadCut("Histogrammer/cuts/tailcuts.root", "right");
-	TCutG* proton_mid_cut = l->loadCut("Histogrammer/cuts/tailcuts.root", "middle");
-	TCutG* proton_left_mid_cut = l->loadCut("Histogrammer/cuts/tailcuts.root", "leftmid");
-	TCutG* proton_left_cut = l->loadCut("Histogrammer/cuts/tailcuts.root", "left");
-
-	TCutG* top_1 = l->loadCut("Histogrammer/cuts/tailcuts.root", "top");
-	TCutG* bottom_1 = l->loadCut("Histogrammer/cuts/tailcuts.root", "bottom");
-
-	TCutG* extra_all = l->loadCut("Histogrammer/cuts/extra_cuts.root", "all_reduced");
-	TCutG* extra_inner = l->loadCut("Histogrammer/cuts/extra_cuts.root", "bot_inner");
-	TCutG* extra_mid = l->loadCut("Histogrammer/cuts/extra_cuts.root", "bot_mid");
-	TCutG* extra_out = l->loadCut("Histogrammer/cuts/extra_cuts.root", "bot_out");
-
-	TCutG* beta_left = l->loadCut("Histogrammer/cuts/betabeta.root", "beta_left");
-	TCutG* beta_right = l->loadCut("Histogrammer/cuts/betabeta.root", "beta_right");
-
-	c->setStandard1D(5000, 0, 5000);
-
-	c->add1DCut(extra_all, "extra_all");
-	c->add1DCut(extra_inner, "extra_inner");
-	c->add1DCut(extra_mid, "extra_mid");
-	c->add1DCut(extra_out, "extra_out");
-
-	c->add1DCut(c1, "alpha_c1");
-	c->add1DCut(c2, "alpha_c2");
-	c->add1DCut(c3, "alpha_c3");
-	c->add1DCut(c4, "alpha_c4");
-	c->add1DCut(ll, "alpha_left");
-	c->add1DCut(between, "alpha_between");
-
-	c->add1DCut(midCut, "mid");
-	c->add1DCut(bottomCut, "bottom");
-	c->add1DCut(bottomCut2, "bottom2");
-	c->add1DCut(bottomLeftCut, "bottomLeft");
-	c->add1DCut(leftCut, "left");
-	c->add1DCut(topRightCut, "topRight");
-	c->add1DCut(bottomClock3sCut, "bottom3");
-	c->add1DCut(overflowCut, "overflow");
-	c->add1DCut(bottomClock3BigCut, "bottom3Big");
-
-	c->add1DCut(proton_right_cut, "tail_21"); // peak 21
-	c->add1DCut(proton_mid_cut, "tail_6"); // peak 6
-	c->add1DCut(proton_left_mid_cut, "tail_1"); // peak 1
-	c->add1DCut(proton_left_cut, "tail_y"); // y-aksen
-
-	c->add1DCut(top_1, "top_peak_1");
-	c->add1DCut(bottom_1, "bottom_peak_1");
-
-	c->add1DCut(beta_left, "beta_left");
-	c->add1DCut(beta_right, "beta_right");
-
-	// AL tids information
-	allClocks = new TH1F("allClocks", "Al data: Clockl i sek.", 5000, 0, 5000);
+	this->dest = destination;
 
 }
 
@@ -106,14 +27,21 @@ void TimeAnalyzer::analyze(Selector* s) {
 			Nt1last = s->Nt1;
 		}
 		c->fill1D(e1, egas, clocks);
-		allClocks->Fill(clocks);
 	}
 }
 
+void TimeAnalyzer::setCuts(Cuts* cuts) {
+	c = cuts;
+}
+
 const char* TimeAnalyzer::getDestination() {
-	return "time";
+	return dest;
 }
 
 void TimeAnalyzer::terminate() {
+	TString rootFile = "Histogrammer/" + TString(getDestination()) + ".root";
+	TFile* f = new TFile(rootFile, "recreate");
+	c->writeToFile(f);
+	f->Close();
 }
 

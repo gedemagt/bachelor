@@ -2,10 +2,12 @@
 #include "GasAnalyzer.h"
 #include "DataLoader.h"
 #include "Selector.h"
+#include "RootTCut.h"
 #include <iostream>
 using namespace std;
 
-GasAnalyzer::GasAnalyzer() {
+GasAnalyzer::GasAnalyzer(const char* dest) {
+	this->dest = dest;
 	c = new Cuts(10);
 	DataLoader* l = new DataLoader();
 	midCut = l->loadCut("Histogrammer/cuts/midCut.root", "CUTG");
@@ -16,10 +18,10 @@ GasAnalyzer::GasAnalyzer() {
 	proton_left_mid_cut = l->loadCut("Histogrammer/cuts/tailcuts.root", "leftmid");
 	proton_left_cut = l->loadCut("Histogrammer/cuts/tailcuts.root", "left");
 	
-	c->add1DCut(proton_right_cut, "tail_21", 300, 0, 1500); // peak 21
-	c->add1DCut(proton_mid_cut, "tail_6", 300, 0, 1500); // peak 6
-	c->add1DCut(proton_left_mid_cut, "tail_1", 500, 0, 2500); // peak 1
-	c->add1DCut(proton_left_cut, "tail_y", 500, 0, 2500); // y-aksen
+	c->add1DCut(new RootTCut(proton_right_cut), "tail_21", 300, 0, 1500); // peak 21
+	c->add1DCut(new RootTCut(proton_mid_cut), "tail_6", 300, 0, 1500); // peak 6
+	c->add1DCut(new RootTCut(proton_left_mid_cut), "tail_1", 500, 0, 2500); // peak 1
+	c->add1DCut(new RootTCut(proton_left_cut), "tail_y", 500, 0, 2500); // y-aksen
 
 	peak1Gas = new TH1F("proton1gas","Proton peak1 i gas", 500, 0, 1000);
 	peak2Gas = new TH1F("proton2gas","Proton peak2 i gas", 500, 0, 1000);
@@ -57,9 +59,19 @@ void GasAnalyzer::fillHistograms(Short_t Egas, Short_t E1) {
 }
 
 const char* GasAnalyzer::getDestination() {
-	return "gas";
+	return dest;
 }
 
 void GasAnalyzer::terminate() {
+	TString rootFile = "Histogrammer/" + TString(getDestination()) + ".root";
+	TFile* f = new TFile(rootFile, "recreate");
+	f->WriteTObject(peak1Gas);
+	f->WriteTObject(peak2Gas);
+	f->WriteTObject(peak1Si);
+	f->WriteTObject(peak2Si);
+	f->WriteTObject(alfa1Gas);
+	f->WriteTObject(alfa2Gas);
+	c->writeToFile(f);
+	f->Close();
 }
 

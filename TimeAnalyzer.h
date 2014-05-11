@@ -8,11 +8,12 @@
 class TimeAnalyzer : public Analyzer {
 
 public:
-	TimeAnalyzer();
+	TimeAnalyzer(const char* destination);
 	virtual ~TimeAnalyzer() {};
 	void analyze(Selector* s);
 	void terminate();
 	const char* getDestination();
+	void setCuts(Cuts* cuts);
 
 private:
 
@@ -20,20 +21,8 @@ private:
 	Short_t egas;
 	Short_t e1;
 
-	//TFile *file;
-
-	TCutG* midCut;
-	TCutG* leftCut;
-	TCutG* topRightCut;
-	TCutG* bottomCut;
-	TCutG* bottomCut2;
-	TCutG* bottomLeftCut;
-	TCutG* overflowCut;
-	TCutG* bottomClock3sCut;
-	TCutG* bottomClock3BigCut;
-
-	// AL tids information
-	TH1F *allClocks;
 	Cuts* c;
+
+	const char* dest;
 
 };

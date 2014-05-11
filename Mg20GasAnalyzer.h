@@ -6,7 +6,7 @@
 class Mg20GasAnalyzer : public Analyzer {
 
 public:
-	Mg20GasAnalyzer();
+	Mg20GasAnalyzer(const char* dest);
 	virtual ~Mg20GasAnalyzer() {};
 	void analyze(Selector* s);
 	void terminate();
@@ -15,6 +15,7 @@ public:
 private:
 	void fillHistograms(Short_t Egas, Short_t E1);
 
+	const char* dest;
 	Short_t e1;
 	Short_t Egas;
 

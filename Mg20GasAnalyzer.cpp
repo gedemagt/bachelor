@@ -4,10 +4,14 @@
 #include <iostream>
 using namespace std;
 
-Mg20GasAnalyzer::Mg20GasAnalyzer() {
+Mg20GasAnalyzer::Mg20GasAnalyzer(const char* dest) {
+
+	this->dest = dest;
 
 	peak1 = new TH1F("peak1", "Egas", 500, 1000, 2000);
 	peak2 = new TH1F("peak2", "Egas", 400, 490, 1700);
+
+
 }
 
 void Mg20GasAnalyzer::analyze(Selector* s) {
@@ -26,9 +30,14 @@ void Mg20GasAnalyzer::fillHistograms(Short_t Egas, Short_t E1) {
 }
 
 const char* Mg20GasAnalyzer::getDestination() {
-	return "Gasmg20";
+	return dest;
 }
 
 void Mg20GasAnalyzer::terminate() {
+	TString rootFile = "Histogrammer/" + TString(getDestination()) + ".root";
+	TFile* f = new TFile(rootFile, "recreate");
+	f->WriteTObject(peak1);
+	f->WriteTObject(peak2);
+	f->Close();
 }
 
