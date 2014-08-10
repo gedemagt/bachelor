@@ -1,8 +1,8 @@
-#include "SRIMclass.h"
+#include "SRIMM.h"
 #include "TFile.h"
 
 void srim() {
-	SRIM *ss = new SRIM();
+	SRIMM *ss = new SRIMM();
 	ss->SetPathName("");
 	ss->Creategraphs();
 	TFile f("SRIM.root", "recreate");

@@ -89,6 +89,7 @@
     <ClInclude Include="AnalysisClass.h" />
     <ClInclude Include="Analyzer.h" />
     <ClInclude Include="BananaAnalyzer.h" />
+    <ClInclude Include="BetaAnalyzer.h" />
     <ClInclude Include="Calibration.h" />
     <ClInclude Include="CalibrationClass.h" />
     <ClInclude Include="Cut.h" />
@@ -100,6 +101,7 @@
     <ClInclude Include="GasAnalyzer.h" />
     <ClInclude Include="generateHistograms.h" />
     <ClInclude Include="Kolmogorow.h" />
+    <ClInclude Include="LaseroffAnalyzer.h" />
     <ClInclude Include="Macros.h" />
     <ClInclude Include="Mg20GasAnalyzer.h" />
     <ClInclude Include="Mg20SiliciumAnalyzer.h" />
@@ -109,7 +111,7 @@
     <ClInclude Include="Selector.h" />
     <ClInclude Include="Si1Si2Analyzer.h" />
     <ClInclude Include="SiliciumAnalyzer.h" />
-    <ClInclude Include="SRIMclass.h" />
+    <ClInclude Include="SRIMM.h" />
     <ClInclude Include="SRIMLoader.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
@@ -118,15 +120,18 @@
     <ClInclude Include="Util.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Awesomeize.cpp" />
     <ClCompile Include="BananaAnalyzer.cpp" />
+    <ClCompile Include="BetaAnalyzer.cpp" />
     <ClCompile Include="binOptimize.cpp" />
     <ClCompile Include="CumuTime.cpp" />
     <ClCompile Include="Cuts.cpp" />
     <ClCompile Include="DataLoader.cpp" />
-    <ClCompile Include="DSSDAnalyzercpp.cpp" />
+    <ClCompile Include="DSSDAnalyzer.cpp" />
     <ClCompile Include="GasAnalyzer.cpp" />
     <ClCompile Include="IterateSRIM.cpp" />
     <ClCompile Include="Kolmogorow.cpp" />
+    <ClCompile Include="LaseroffAnalyzer.cpp" />
     <ClCompile Include="Mg20GasAnalyzer.cpp" />
     <ClCompile Include="Mg20SiliciumAnalyzer.cpp" />
     <ClCompile Include="MonteCarlo.cpp" />
@@ -139,6 +144,7 @@
     <ClCompile Include="SiliciumAnalyzer.cpp" />
     <ClCompile Include="iteratePeakEnergy.cpp" />
     <ClCompile Include="SRIM.cpp" />
+    <ClCompile Include="SRIMM.cpp" />
     <ClCompile Include="TimeAnalysis.cpp" />
     <ClCompile Include="TimeAnalyzer.cpp" />
     <ClCompile Include="TimeCalc.cpp" />
@@ -148,6 +154,9 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="Util.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Histogrammer\cumulated_alpha_cuts.root" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

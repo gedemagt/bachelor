@@ -36,5 +36,7 @@ private:
 	TH1F *bottomData2;
 	TH1F *bottomLeftData;
 	TH1F *topRightData;
+	TH1F *midDataGasAbove1000;
+	TH1F *midleft;
 
 };

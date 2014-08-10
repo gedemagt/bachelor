@@ -1,0 +1,3 @@
+TCanvas *c = Canvas_1;
+
+c->SetYTitle("Erik");

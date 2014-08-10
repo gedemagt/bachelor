@@ -25,6 +25,8 @@ SiliciumAnalyzer::SiliciumAnalyzer(Calib *c, const char* dest) : Analyzer(dest) 
 	bottomLeftData = new TH1F("bottomLeftBanan", "Bund data", 900, 0, 4500);
 	leftData = new TH1F("leftBanan", "Left data", 150, 0, 1000);
 	topRightData = new TH1F("topRightBanan", "Right data", 200, 1500, 3000);
+	midDataGasAbove1000 = new TH1F("midGasAbove1000", "Al data", 900, 0, 4500);
+	midleft = new TH1F("midleft", "Al data", 900, 0, 4500);
 }
 
 void SiliciumAnalyzer::analyze(Selector* s) {
@@ -52,6 +54,13 @@ void SiliciumAnalyzer::fillHistograms(Short_t Egas_ch, Short_t E1_ch, Short_t Eg
 	if (topRightCut->IsInside(E1_ch, Egas_ch)){
 		topRightData->Fill(E1);
 	}
+	if (Egas_ch > 1000){
+		midDataGasAbove1000->Fill(E1);
+	}
+
+	if (leftCut->IsInside(E1_ch, Egas_ch) || midCut->IsInside(E1_ch, Egas_ch)){
+		midleft->Fill(E1);
+	}
 
 }
 
@@ -72,6 +81,8 @@ void SiliciumAnalyzer::terminate() {
 	f->WriteTObject(bottomLeftData);
 	f->WriteTObject(leftData);
 	f->WriteTObject(topRightData);
+	f->WriteTObject(midDataGasAbove1000);
+	f->WriteTObject(midleft);
 	
 	f->Close();
 }

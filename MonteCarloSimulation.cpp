@@ -44,7 +44,7 @@ void printReport(ofstream &file, Int_t repeats, Double_t* A, Double_t* W, Double
 
 void MonteCarloSimulation(Int_t c, Int_t r) {
 	DataLoader* l = new DataLoader();
-	TH1F *referenceproton = l->load1DHistogram("Histogrammer/time.root", "bottom3");
+	TH1F *referenceproton = l->load1DHistogram("Histogrammer/New/time.root", "bottom3");
 	Int_t repeats = r;
 	Int_t counts = c;
 	MonteCarlo* mc = new MonteCarlo();

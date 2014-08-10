@@ -12,10 +12,10 @@ using namespace std;
 
 void CumuTime() {
 	DataLoader* l = new DataLoader();
-	TH1F* c1 = l->load1DHistogram("Histogrammer/time.root", "alpha_c1");
-	TH1F* c2 = l->load1DHistogram("Histogrammer/time.root", "alpha_c2");
-	TH1F* c3 = l->load1DHistogram("Histogrammer/time.root", "alpha_c3");
-	TH1F* c4 = l->load1DHistogram("Histogrammer/time.root", "alpha_c4");
+	TH1F* c1 = l->load1DHistogram("Histogrammer/New/time.root", "alpha_c1");
+	TH1F* c2 = l->load1DHistogram("Histogrammer/New/time.root", "alpha_c2");
+	TH1F* c3 = l->load1DHistogram("Histogrammer/New/time.root", "alpha_c3");
+	TH1F* c4 = l->load1DHistogram("Histogrammer/New/time.root", "alpha_c4");
 	
 	freopen("Results/central_alpha_cuts.txt", "w", stdout);
 	
@@ -81,13 +81,13 @@ void CumuTime() {
 
 
 	TH1F* c1_squared = util::getSquaredHistogram(c1, 0, 5000, false, false);
-	TH1F* proton = l->load1DHistogram("Histogrammer/time.root","bottom3");
-	TH1F* between = l->load1DHistogram("Histogrammer/time.root", "alpha_between");
-	TH1F* left = l->load1DHistogram("Histogrammer/time.root", "alpha_left");
-	TH1F* topright = l->load1DHistogram("Histogrammer/time.root", "topRight");
-	TH1F* betas = l->load1DHistogram("Histogrammer/time.root", "extra_inner");
-	TH1F* betas_left = l->load1DHistogram("Histogrammer/time.root", "beta_left");
-	TH1F* betas_right = l->load1DHistogram("Histogrammer/time.root", "beta_right");
+	TH1F* proton = l->load1DHistogram("Histogrammer/New/time.root","bottom3");
+	TH1F* between = l->load1DHistogram("Histogrammer/New/time.root", "alpha_between");
+	TH1F* left = l->load1DHistogram("Histogrammer/New/time.root", "alpha_left");
+	TH1F* topright = l->load1DHistogram("Histogrammer/New/time.root", "topRight");
+	TH1F* betas = l->load1DHistogram("Histogrammer/New/time.root", "extra_inner");
+	TH1F* betas_left = l->load1DHistogram("Histogrammer/New/time.root", "beta_left");
+	TH1F* betas_right = l->load1DHistogram("Histogrammer/New/time.root", "beta_right");
 	TH1F* proton_squared = util::getSquaredHistogram(proton, 0, 5000, false, false);
 	proton_squared->SetName("proton_squared");
 	c1_squared->SetName("c1_squared");

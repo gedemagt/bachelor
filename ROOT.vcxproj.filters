@@ -27,9 +27,6 @@
     <ClInclude Include="AnalysisClass.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="SRIMclass.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="DataLoader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -108,6 +105,15 @@
     <ClInclude Include="TimeCalc.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="BetaAnalyzer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LaseroffAnalyzer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SRIMM.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -179,9 +185,6 @@
     <ClCompile Include="Si1Si2Analyzer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="DSSDAnalyzercpp.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Util.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -191,5 +194,25 @@
     <ClCompile Include="TimeCalc.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="BetaAnalyzer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DSSDAnalyzer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LaseroffAnalyzer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SRIMM.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Awesomeize.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Histogrammer\cumulated_alpha_cuts.root">
+      <Filter>Source Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

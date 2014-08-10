@@ -9,22 +9,15 @@
 using namespace std;
 
 TimeAnalyzer::TimeAnalyzer(const char* destination) : Analyzer(destination) {
-	
+	calc = new TimeCalc();
 }
 
 void TimeAnalyzer::analyze(Selector* s) {
+	calc->calculateNewEvent(s);
 	egas = s->Egas;
 	e1 = s->E1;
-	clockl = s->Clockl;
-	// Calculte clock stuff
-	clocks = 0;
-	if (s->Clockl > clockllast){
-		clocks = s->Clockl - clockllast;
-		if (s->Nt1 > Nt1last){
-			clockllast = s->Clockl;
-			Nt1last = s->Nt1;
-		}
-		c->fill1D(e1, egas, clocks);
+	if (calc->shouldFill()) {
+		c->fill1D(e1, egas, calc->getClocks());
 	}
 }
 

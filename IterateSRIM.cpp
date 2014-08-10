@@ -60,7 +60,7 @@ void iterateSRIM() {
 	cout << "Start guess" << endl;
 	cout << result[0] << "," << result[1] << "," << result[2] << endl << endl;
 
-	for (int i = 1; i < 10; i++) {
+	for (int i = 1; i < 15; i++) {
 		cout << "Iteration " << i << endl;
 		fillNewDeltaE(result[2]);
 		vectorCopyToResult(E_total);
@@ -84,14 +84,15 @@ void fillMatrixColumn(TVectorD vector, Int_t coln) {
 
 void fillNewDeltaE(Double_t newC) {
 	Double_t delta_e;
+	Double_t devide = 2;
 	delta_e = newC * alfa->Eval(E_total[0]);
-	matrix[0][2] = alfa->Eval((E_total[0] - delta_e / 2));
+	matrix[0][2] = alfa->Eval((E_total[0] - delta_e / devide));
 
 	delta_e = newC * alfa->Eval(E_total[1]);
-	matrix[1][2] = alfa->Eval((E_total[1] - delta_e / 2));
+	matrix[1][2] = alfa->Eval((E_total[1] - delta_e / devide));
 
 	delta_e = newC * proton->Eval(E_total[2]);
-	matrix[2][2] = proton->Eval((E_total[2] - delta_e / 2));
+	matrix[2][2] = proton->Eval((E_total[2] - delta_e / devide));
 }
 
 void solveMatrix() {

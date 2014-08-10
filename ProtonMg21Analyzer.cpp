@@ -10,6 +10,10 @@ ProtonMg21Analyzer::ProtonMg21Analyzer(const char* dest) : Analyzer(dest) {
 	proton200_medium = l->loadCut("Histogrammer/cuts/proton200.root", "low");
 	proton200_low = l->loadCut("Histogrammer/cuts/proton200.root", "medium");
 
+	peak_200 = new TH1F("proton_200", "Proton ved 200", 5000, 0, 5000);
+
+	calc = new TimeCalc();
+
 	n = 28;
 	cuts = new cut[n];
 	peakHistograms = new TH1F[n];
@@ -61,22 +65,17 @@ bool ProtonMg21Analyzer::isInside(Double_t E1, cut cut) {
 }
 
 void ProtonMg21Analyzer::analyze(Selector* s) {
-	// Calculte clock stuff
-	clocks = 0;
-	if (s->Clockl > clockllast){
-		clocks = s->Clockl - clockllast;
-		if (s->Nt1 > Nt1last){
-			clockllast = s->Clockl;
-			Nt1last = s->Nt1;
-		}
-		
+	calc->calculateNewEvent(s);
+
+	if (s->E1 < 230 && s->E1 > 200 && s->Egas < 950 && s->Egas > 550) {
+		calc->fillHistogram(peak_200);
 	}
 
 	if (proton200_low->IsInside(s->E1, s->Egas)) {
 		for (int i = 23; i < 28; i++) {
 			if (isInside(s->E1, cuts[i]))  {
 				peakHistograms[i].Fill(s->E1);
-				if (s->Clockl > clockllast) timeHistograms[i].Fill(clocks);
+				calc->fillHistogram(&timeHistograms[i]);
 			};
 		};
 	}
@@ -85,7 +84,7 @@ void ProtonMg21Analyzer::analyze(Selector* s) {
 		for (int i = 18; i < 23; i++) {
 			if (isInside(s->E1, cuts[i]))  {
 				peakHistograms[i].Fill(s->E1);
-				if (s->Clockl > clockllast) timeHistograms[i].Fill(clocks);
+				calc->fillHistogram(&timeHistograms[i]);
 			};
 		};
 	}
@@ -95,15 +94,17 @@ void ProtonMg21Analyzer::analyze(Selector* s) {
 		for (int i = 13; i < 18; i++) {
 			if (isInside(s->E1, cuts[i]))  {
 				peakHistograms[i].Fill(s->E1);
-				if (s->Clockl > clockllast) timeHistograms[i].Fill(clocks);
+				calc->fillHistogram(&timeHistograms[i]);
 			};
 		};
 	}
 	if (bottomCut2->IsInside(s->E1, s->Egas)) {
 		for (int i = 0; i < 13; i++) {
+			if (i == 0 && s->Egas < 200) continue;
+			if (i == 1 && s->Egas < 200) continue;
 			if (isInside(s->E1, cuts[i]))  {
 				peakHistograms[i].Fill(s->E1);
-				if (s->Clockl > clockllast) timeHistograms[i].Fill(clocks);
+				calc->fillHistogram(&timeHistograms[i]);
 			};
 		};
 	}
@@ -116,6 +117,7 @@ void ProtonMg21Analyzer::terminate() {
 		f->WriteTObject(&peakHistograms[i]);// = TH1F(TString("peak").Append(c.name), TString("Peak ").Append(c.name), distance, c.left, c.right);
 		f->WriteTObject(&timeHistograms[i]);// = TH1F(TString("peak").Append(c.name).Append("-time"), TString("Peak ").Append(c.name), 5000, 0, 5000);
 	}
+	f->WriteTObject(peak_200);
 	f->Close();
 }
 

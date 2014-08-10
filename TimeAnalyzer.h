@@ -4,6 +4,7 @@
 #include "TH1F.h"
 #include "TFile.h"
 #include "Cuts.h"
+#include "TimeCalc.h"
 
 class TimeAnalyzer : public Analyzer {
 
@@ -15,6 +16,8 @@ public:
 	void setCuts(Cuts* cuts);
 
 private:
+
+	TimeCalc* calc;
 
 	Int_t clockllast = 0, Nt1last = 0, clocks, clockl;
 	Short_t egas;

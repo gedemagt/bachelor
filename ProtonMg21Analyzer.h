@@ -2,6 +2,7 @@
 #include "TCutG.h"
 #include "TH1F.h"
 #include "TFile.h"
+#include "TimeCalc.h"
 
 using namespace std;
 
@@ -18,7 +19,7 @@ public:
 	void analyze(Selector* s);
 	void terminate();
 private:
-	Int_t clockllast = 0, Nt1last = 0, clocks, clockl;
+	TimeCalc* calc;
 	Int_t n;
 	bool isInside(Double_t E1, cut cut);
 	TCutG* bottomCut2;
@@ -30,4 +31,6 @@ private:
 	TH1F* peakHistograms;
 	TH1F* timeHistograms;
 	cut* cuts;
+
+	TH1F* peak_200;
 };

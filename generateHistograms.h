@@ -12,6 +12,8 @@
 #include "Cut2D.h"
 #include "Si1Si2Analyzer.h"
 #include "DSSDAnalyzer.h"
+#include "BetaAnalyzer.h"
+#include "LaseroffAnalyzer.h"
 
 #ifndef GENERATEHISTOGRAMS_H
 #define GENERATEHISTOGRAMS_H
@@ -148,15 +150,16 @@ void generateLeftCornerSquareTimeHistograms() {
 	TChain* chain = l->loadData("mg21.dat", "h7");
 	TimeAnalyzer* t = new TimeAnalyzer("New/timeSquare");
 
-	Double_t x_max = 500;
-	Double_t y_max = 1500;
-	Double_t x_min = 10;
-	Double_t y_min = 0;
-
-	Double_t x = 20;
-	Double_t y = 50;
+	Int_t x_max = 700;
+	Int_t y_max = 1500;
+	Int_t x_min = 20;
+	Int_t y_min = 0;
+	Int_t x = 50;
+	Int_t y = 80;
+	
 	Cuts* c = new Cuts((x_max/x+1)*(y_max/y+1));
 	c->setStandard1D(5000, 0, 5000);
+	
 	for (Double_t i = x_min; i < x_max; i+=x) {
 		for (Double_t j = y_min; j < y_max; j+=y) {
 			char name[2];
@@ -181,6 +184,22 @@ void generateDSSD() {
 	DataLoader* l = new DataLoader();
 	TChain* chain = l->loadData("mg21.dat", "h7");
 	DSSDAnalyzer* t = new DSSDAnalyzer("New/dssd");
+	Selector *s = new Selector(t);
+	chain->Process(s);
+}
+
+void generateBeta() {
+	DataLoader* l = new DataLoader();
+	TChain* chain = l->loadData("mg21.dat", "h7");
+	BetaAnalyzer* t = new BetaAnalyzer("New/beta");
+	Selector *s = new Selector(t);
+	chain->Process(s);
+}
+
+void generateLaserOff() {
+	DataLoader* l = new DataLoader();
+	TChain* chain = l->loadData("mg21_laseroff.dat", "h7");
+	LaseroffAnalyzer* t = new LaseroffAnalyzer("New/laseroff");
 	Selector *s = new Selector(t);
 	chain->Process(s);
 }

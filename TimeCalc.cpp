@@ -8,7 +8,21 @@ TimeCalc::~TimeCalc() {
 
 }
 
+bool TimeCalc::shouldFill() {
+	return clockl > clockllast;
+}
+
+Int_t TimeCalc::getClocks() {
+	return clocks;
+}
+
 void TimeCalc::calculateNewEvent(Selector* s) {
+
+	if (s->Nt1 < Nt1last) {
+		clockllast = 0;
+		Nt1last = 0;
+	}
+
 	clockl = s->Clockl;
 	clocks = 0;
 	if (s->Clockl > clockllast){

@@ -12,23 +12,29 @@ TH1F* binOptimize(TH1F* histo) {
 
 	// Get current bins
 	Int_t nBins = histo->GetNbinsX();
-	cout << "Bins " << nBins << "\n" << endl;
+	cout << "Bins " << nBins << endl;
 	// Get current max
-	Double_t max = histo->GetMaximum();
-	cout << "Max " << max << "\n" << endl;
+	Double_t max = histo->GetXaxis()->GetXmax();
+	cout << "Max " << max << endl;
 	// The new number of bins
 	Int_t newBins;
 	TH1F* result = histo;// = rebin(histo, max, 100);
 
-
+	Int_t min_bin = 0;
+	Int_t min = 90000000000;
 
 	for (newBins = nBins; newBins > 2; newBins--) {
 		result= rebin(histo, max, newBins);
-		cout << C(histo) << " " << C(result) << endl;
+		//result->Draw();
+		cout << C(result) << endl;
+		if (C(result) < min ) {
+			min = C(result);
+			min_bin = newBins;
+		}
+		
 	}
 
-	
-	cout << C(histo) << " " << C(result) << endl;
+	cout << min_bin << endl;
 	return result;
 }
 
@@ -60,9 +66,9 @@ Double_t varians(TH1F* histo) {
 Double_t C(TH1F* histo) {
 
 	Double_t mean = histo->GetMean();
-	Double_t var = varians(histo);
+	Double_t var = histo->GetStdDev() * histo->GetStdDev();
 	Double_t width = histo->GetBinWidth(0);
 	Double_t n = histo->GetEntries();
-	return (2 * mean - var) / (width*width);
+	return (2 * mean - var) / (n*n*width*width);
 
 }

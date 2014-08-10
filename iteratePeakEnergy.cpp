@@ -7,7 +7,7 @@ Int_t ch;
 
 void iterate(int iterations) {
 	for (int i = 0; i < iterations; i++) {
-		newStartEnergy = a * ch + b + c*alfaa->Eval(newStartEnergy);
+		newStartEnergy = a * ch + b + c*alfaa->Eval(newStartEnergy - c*alfaa->Eval(newStartEnergy - newStartEnergy / 2));
 		cout << "E: " << newStartEnergy << endl;
 	}
 }
